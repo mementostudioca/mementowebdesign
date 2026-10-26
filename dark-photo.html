@@ -1,0 +1,484 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lumen &amp; Co. — Wedding &amp; Portrait Photography · Toronto</title>
+<meta name="description" content="Warm, natural-light wedding and portrait photography in Toronto. Photographs that feel like memory.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..600;1,9..144,300..600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+/* ============ tokens ============ */
+:root{
+  --bg:#171310; --bg2:#1e1813; --panel:#221b15;
+  --cream:#F3EDE4; --muted:rgba(243,237,228,.66); --faint:rgba(243,237,228,.42);
+  --gold:#E3A94F; --line:rgba(243,237,228,.13);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --pad:clamp(20px,4vw,44px); --sec:clamp(72px,9vw,136px);
+  --disp:'Fraunces',Georgia,serif; --body:'Inter',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+html,body{overflow-x:hidden}
+body{
+  background:var(--bg); color:var(--cream); font-family:var(--body);
+  font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased;
+  /* faint warm vignette so the near-black never reads flat */
+  background-image:radial-gradient(90% 60% at 85% -10%,rgba(227,169,79,.07),transparent 60%),
+                   radial-gradient(70% 55% at 0% 100%,rgba(227,169,79,.05),transparent 65%);
+}
+::selection{background:var(--gold);color:#171310}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px;border-radius:3px}
+section[id]{scroll-margin-top:110px}
+.wrap{max-width:1160px;margin-inline:auto;padding-inline:var(--pad)}
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.disp{font-family:var(--disp);font-optical-sizing:auto;font-weight:400;letter-spacing:-.015em}
+.over{font-size:.72rem;font-weight:500;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+.h2{font-size:clamp(30px,4.4vw,56px);line-height:1.08}
+.lede{color:var(--muted);max-width:52ch}
+.shead{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:24px;margin-bottom:clamp(32px,4vw,56px)}
+
+/* ============ grain overlay + scroll progress ============ */
+.grain{position:fixed;inset:0;z-index:40;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='160' height='160' filter='url(%23n)'/%3E%3C/svg%3E")}
+.progress{position:fixed;top:0;left:0;right:0;height:2px;background:var(--gold);scale:0 1;transform-origin:left center;z-index:45}
+@supports (animation-timeline:scroll()){
+  .progress{animation:pgrow linear both;animation-timeline:scroll(root)}
+  @keyframes pgrow{to{scale:1 1}}
+}
+
+/* ============ header ============ */
+.site{position:sticky;top:0;z-index:35;background:rgba(23,19,16,.72);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding-block:16px}
+.mark{display:flex;align-items:center;gap:12px;font-family:var(--disp);font-size:1.28rem;letter-spacing:.04em}
+.mark svg{width:26px;height:26px;flex:none}
+nav{display:flex;align-items:center;gap:26px;font-size:.88rem;font-weight:500}
+nav a{color:var(--muted);transition:color .3s}
+nav a:hover{color:var(--cream)}
+nav .cta-s{color:var(--gold);border:1px solid rgba(227,169,79,.45);padding:10px 18px;border-radius:999px;transition:background .35s,color .35s}
+nav .cta-s:hover{background:var(--gold);color:#171310}
+
+/* ============ hero + kinetic headline ============ */
+.hero{padding-block:clamp(90px,11vw,150px) clamp(60px,7vw,110px)}
+.hero .over{margin-bottom:26px}
+.hero h1{font-size:clamp(3.1rem,7.4vw,6.4rem);line-height:1.02;max-width:16ch}
+.kw{display:inline-block}
+html.js .kw{opacity:0;translate:0 .9em}
+html.js body.loaded .kw{animation:kwIn .95s var(--ease) calc(var(--i,0)*100ms) both}
+@keyframes kwIn{to{opacity:1;translate:0 0}}
+.accent{font-style:italic;color:var(--gold)}
+.hero .sub{margin-top:30px;font-size:clamp(15px,1.5vw,18px);color:var(--muted);max-width:46ch}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:18px 26px;margin-top:38px}
+.btn{display:inline-flex;align-items:center;gap:12px;background:var(--gold);color:#171310;font-weight:600;font-size:.92rem;padding:14px 26px;border-radius:999px;border:none;cursor:pointer;transition:filter .35s,box-shadow .35s}
+.btn:hover{filter:brightness(1.08);box-shadow:0 12px 34px rgba(227,169,79,.24)}
+.btn .arr{translate:0 0;transition:translate .4s var(--ease)}
+.btn:hover .arr,.btn:focus-visible .arr{translate:7px 0}
+.link{font-size:.92rem;font-weight:500;color:var(--muted);border-bottom:1px solid var(--line);padding-bottom:4px;transition:color .3s,border-color .3s}
+.link:hover{color:var(--cream);border-color:var(--gold)}
+.facts{display:flex;flex-wrap:wrap;gap:10px 34px;margin-top:52px;padding-top:26px;border-top:1px solid var(--line);font-size:.82rem;color:var(--faint);letter-spacing:.06em}
+.facts b{color:var(--gold);font-weight:500}
+
+/* ============ scroll reveals ============ */
+html.js .reveal{opacity:0;translate:0 26px}
+html.js .reveal.in{opacity:1;translate:0 0;
+  transition:opacity .75s ease calc(var(--d,0)*90ms),translate .85s var(--ease) calc(var(--d,0)*90ms)}
+
+/* ============ bento gallery ============ */
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:18px;align-items:start}
+.tile{position:relative;border-radius:20px;overflow:hidden;border:1px solid var(--line);background:var(--panel)}
+.tile-a{grid-column:span 7;aspect-ratio:4/3}
+.tile-b{grid-column:span 5;aspect-ratio:3/4}
+.tile-c{grid-column:span 4;aspect-ratio:1/1}
+.tile-d{grid-column:span 8;aspect-ratio:16/9}
+.tile-e{grid-column:span 8;aspect-ratio:16/10}
+.tile-f{grid-column:span 4;aspect-ratio:3/4}
+.media{position:absolute;inset:0;scale:1;transition:scale 1.2s var(--ease)}
+.tile:hover .media,.tile:focus-within .media{scale:1.05}
+.media svg{position:absolute;inset:0;width:100%;height:100%}
+.cap{position:absolute;left:0;right:0;bottom:0;padding:22px 24px 20px;
+  background:linear-gradient(to top,rgba(17,13,10,.82),transparent)}
+.cap .tag{font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.cap h3{font-family:var(--disp);font-size:1.16rem;font-weight:400;margin-top:6px}
+.cap p{font-size:.8rem;color:var(--faint)}
+
+/* gradient-art palettes — fictional "photos" made of light, no real images */
+.g1{background:radial-gradient(75% 90% at 78% 22%,#d98f3d,transparent 55%),linear-gradient(160deg,#3a2a1c,#171310 70%)}
+.g2{background:radial-gradient(60% 55% at 30% 18%,#b96a33,transparent 60%),linear-gradient(200deg,#41291d,#150f0b 75%)}
+.g3{background:radial-gradient(70% 70% at 50% 30%,#e6b06a,transparent 62%),linear-gradient(180deg,#4a3826,#181210 80%)}
+.g4{background:radial-gradient(85% 70% at 65% 28%,#c78b45,transparent 55%),linear-gradient(170deg,#2e3128,#141311 72%)}
+.g5{background:radial-gradient(60% 60% at 22% 30%,#d1904a,transparent 58%),radial-gradient(50% 50% at 80% 70%,#8c5a33,transparent 60%),linear-gradient(150deg,#38291d,#161110 75%)}
+.g6{background:radial-gradient(65% 85% at 50% 20%,#e2a455,transparent 60%),linear-gradient(210deg,#452e20,#171310 78%)}
+
+/* ============ sessions / pricing ============ */
+.tiers{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{position:relative;border:1px solid var(--line);border-radius:20px;background:var(--bg2);padding:clamp(26px,3vw,36px);
+  translate:0 0;transition:translate .45s var(--ease),border-color .45s,box-shadow .45s}
+.card:hover{translate:0 -8px;border-color:rgba(227,169,79,.5);box-shadow:0 26px 60px rgba(0,0,0,.55)}
+.card .tier{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+.card .price{font-family:var(--disp);font-size:clamp(26px,2.6vw,34px);margin:10px 0 2px}
+.card .dur{font-size:.82rem;color:var(--faint)}
+.card ul{list-style:none;margin-top:22px;display:grid;gap:11px;font-size:.9rem;color:var(--muted)}
+.card li{display:flex;gap:11px;align-items:baseline}
+.card li::before{content:"◆";color:var(--gold);font-size:.6rem;translate:0 -2px}
+.card .go{display:inline-flex;align-items:center;gap:10px;margin-top:28px;font-size:.88rem;font-weight:600;color:var(--gold)}
+.card .go .arr{translate:0 0;transition:translate .4s var(--ease)}
+.card:hover .go .arr,.card:focus-within .go .arr{translate:6px 0}
+.featured{border-color:rgba(227,169,79,.55);background:linear-gradient(180deg,rgba(227,169,79,.06),transparent 40%),var(--bg2)}
+.badge{position:absolute;top:-11px;left:clamp(26px,3vw,36px);background:var(--gold);color:#171310;font-size:.68rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;padding:5px 12px;border-radius:999px}
+
+/* ============ process (sticky narrative) ============ */
+.proc{display:grid;grid-template-columns:.55fr 1fr;gap:clamp(30px,5vw,70px)}
+.proc-side{position:sticky;top:120px;align-self:start}
+.proc-side .num{font-family:var(--disp);font-size:clamp(44px,5vw,70px);color:var(--gold);opacity:.4;line-height:1;margin-top:14px}
+.step{border-top:1px solid var(--line);padding:clamp(26px,3vw,40px) 0}
+html.js .step{opacity:.45;transition:opacity .6s var(--ease)}
+.step.active{opacity:1}
+.step .st{font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:10px}
+.step h3{font-family:var(--disp);font-size:clamp(20px,2.2vw,30px);font-weight:400;margin-bottom:10px}
+.step p{color:var(--muted);max-width:48ch;font-size:.95rem}
+
+/* ============ testimonial ============ */
+.quote-sec{padding-block:clamp(70px,8vw,120px)}
+.quote{max-width:60ch;margin-inline:auto;text-align:center}
+.quote .q{font-family:var(--disp);font-style:italic;font-weight:300;font-size:clamp(24px,3.4vw,42px);line-height:1.35}
+.quote .mark-g{color:var(--gold);font-size:2.2rem;line-height:1}
+.quote cite{display:block;margin-top:30px;font-style:normal;font-size:.85rem;color:var(--faint);letter-spacing:.1em}
+.quote cite b{color:var(--cream);font-weight:500}
+
+/* ============ footer ============ */
+footer{border-top:1px solid var(--line);margin-top:var(--sec)}
+.fgrid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;padding-block:clamp(48px,6vw,72px)}
+.fgrid h4{font-size:.74rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:16px}
+.fgrid p,.fgrid li{font-size:.88rem;color:var(--muted)}
+.fgrid ul{list-style:none;display:grid;gap:9px}
+.fgrid a:hover{color:var(--cream)}
+.fbrand .mark{margin-bottom:14px}
+.fbrand p{max-width:34ch}
+.base{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:22px;border-top:1px solid var(--line);font-size:.78rem;color:var(--faint)}
+
+/* ============ responsive: grids collapse, no overflow ============ */
+@media (max-width:900px){
+  .tiers{grid-template-columns:1fr}
+  .fgrid{grid-template-columns:1fr 1fr}
+  .proc{grid-template-columns:1fr}
+  .proc-side{position:static}
+  .tile-a,.tile-b,.tile-c,.tile-d,.tile-e,.tile-f{grid-column:span 6}
+  .tile-a,.tile-d,.tile-e{aspect-ratio:16/9}
+  .tile-b,.tile-c,.tile-f{aspect-ratio:1/1}
+}
+@media (max-width:640px){
+  nav a:not(.cta-s){display:none}
+  .bento{grid-template-columns:1fr 1fr;gap:12px}
+  .tile-a,.tile-d,.tile-e{grid-column:span 2;aspect-ratio:4/3}
+  .tile-b,.tile-c,.tile-f{grid-column:span 1;aspect-ratio:3/4}
+  .fgrid{grid-template-columns:1fr}
+  .hero h1{font-size:clamp(2.4rem,10vw,3.6rem)}
+}
+
+/* ============ reduced motion: fully readable, nothing animates ============ */
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none !important;transition:none !important}
+  html.js .kw,html.js .reveal{opacity:1 !important;translate:0 0 !important}
+  html.js .step{opacity:1 !important}
+  .progress{display:none}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="site">
+  <div class="wrap bar">
+    <a class="mark" href="#top" aria-label="Lumen &amp; Co. home">
+      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#E3A94F" stroke-width="1.4"/><circle cx="12" cy="12" r="4.5" fill="#E3A94F"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3" stroke="#E3A94F" stroke-width="1.4" stroke-linecap="round"/></svg>
+      <span>Lumen&nbsp;&amp;&nbsp;Co.</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#gallery">Gallery</a>
+      <a href="#process">Process</a>
+      <a href="#sessions">Sessions</a>
+      <a href="#kindwords">Kind Words</a>
+      <a class="cta-s" href="#sessions">Book a session</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <!-- ============ hero ============ -->
+  <section class="hero wrap" id="top" aria-labelledby="hero-h">
+    <p class="over">Wedding &amp; portrait photography · Toronto</p>
+    <h1 id="hero-h" class="disp">
+      <span class="kw" style="--i:0">Photographs</span> <span class="kw" style="--i:1">that</span> <span class="kw" style="--i:2">feel</span> <span class="kw" style="--i:3">like</span> <span class="kw accent" style="--i:4">memory</span>
+    </h1>
+    <p class="sub reveal" style="--d:5">Warm, natural-light stories for weddings, portraits and the quiet in-between moments — made on film-soft digital, never rushed, never staged twice.</p>
+    <div class="actions reveal" style="--d:7">
+      <a class="btn" href="#sessions">Book your session <span class="arr" aria-hidden="true">→</span></a>
+      <a class="link" href="#gallery">See recent work</a>
+    </div>
+    <div class="facts reveal" style="--d:9">
+      <span><b>Est. 2019</b> — 320+ sessions</span>
+      <span>Golden hour &amp; candlelight only</span>
+      <span>Delivered in 10 days</span>
+    </div>
+  </section>
+
+  <!-- ============ bento gallery ============ -->
+  <section class="wrap" id="gallery" aria-labelledby="gallery-h" style="padding-block:var(--sec)">
+    <div class="shead">
+      <div>
+        <p class="over reveal" style="--d:0">Selected work</p>
+        <h2 id="gallery-h" class="disp h2 reveal" style="--d:1">The gallery</h2>
+      </div>
+      <p class="lede reveal" style="--d:2">A few frames from recent sessions. Light first, direction second — everything else follows.</p>
+    </div>
+
+    <div class="bento">
+      <figure class="tile tile-a reveal" style="--d:0">
+        <div class="media g1" role="img" aria-label="Abstract gradient artwork evoking amber-hour wedding light">
+          <svg viewBox="0 0 800 600" aria-hidden="true">
+            <circle cx="640" cy="150" r="120" fill="#E3A94F" opacity=".45"/>
+            <circle cx="640" cy="150" r="220" fill="none" stroke="#E3A94F" stroke-width="1.5" opacity=".25"/>
+            <path d="M0 460 C220 420 480 500 800 440 L800 600 L0 600 Z" fill="#171310" opacity=".5"/>
+          </svg>
+        </div>
+        <figcaption class="cap"><span class="tag">Wedding · Niagara</span><h3>Amber Hour, bridal party</h3><p>28 frames · golden hour only</p></figcaption>
+      </figure>
+
+      <figure class="tile tile-b reveal" style="--d:1">
+        <div class="media g2" role="img" aria-label="Abstract gradient artwork evoking candlelight vow detail">
+          <svg viewBox="0 0 600 800" aria-hidden="true">
+            <ellipse cx="300" cy="240" rx="140" ry="180" fill="#E3A94F" opacity=".28"/>
+            <circle cx="300" cy="210" r="46" fill="#F3EDE4" opacity=".35"/>
+            <path d="M300 320 q 90 60 0 160 q -90 -100 0 -160" fill="#E3A94F" opacity=".3"/>
+          </svg>
+        </div>
+        <figcaption class="cap"><span class="tag">Vow detail</span><h3>Candlelight, cathedral</h3><p>Candid, no flash</p></figcaption>
+      </figure>
+
+      <figure class="tile tile-c reveal" style="--d:2">
+        <div class="media g3" role="img" aria-label="Abstract gradient artwork evoking a soft studio portrait">
+          <svg viewBox="0 0 600 600" aria-hidden="true">
+            <circle cx="300" cy="250" r="90" fill="#F3EDE4" opacity=".3"/>
+            <path d="M300 330 C220 360 210 470 240 600 L360 600 C390 470 380 360 300 330 Z" fill="#171310" opacity=".55"/>
+            <rect x="60" y="60" width="480" height="480" fill="none" stroke="#E3A94F" stroke-width="1.2" opacity=".3"/>
+          </svg>
+        </div>
+        <figcaption class="cap"><span class="tag">Portrait No. 12</span><h3>Studio, soft window light</h3><p>Single subject · 2 rolls</p></figcaption>
+      </figure>
+
+      <figure class="tile tile-d reveal" style="--d:3">
+        <div class="media g4" role="img" aria-label="Abstract gradient artwork evoking misty morning first-look light">
+          <svg viewBox="0 0 960 540" aria-hidden="true">
+            <path d="M0 340 L200 240 L400 330 L620 200 L960 300 L960 540 L0 540 Z" fill="#171310" opacity=".55"/>
+            <path d="M0 420 L260 360 L520 430 L780 380 L960 440 L960 540 L0 540 Z" fill="#0f0c09" opacity=".6"/>
+            <circle cx="720" cy="120" r="60" fill="#E3A94F" opacity=".4"/>
+          </svg>
+        </div>
+        <figcaption class="cap"><span class="tag">First look · early morning</span><h3>Mist on the ridge</h3><p>Elopement, 4 hours</p></figcaption>
+      </figure>
+
+      <figure class="tile tile-e reveal" style="--d:4">
+        <div class="media g5" role="img" aria-label="Abstract gradient artwork evoking a warm family session in the park">
+          <svg viewBox="0 0 960 600" aria-hidden="true">
+            <circle cx="180" cy="140" r="70" fill="#E3A94F" opacity=".38"/>
+            <ellipse cx="480" cy="470" rx="260" ry="90" fill="#171310" opacity=".5"/>
+            <circle cx="420" cy="360" r="34" fill="#F3EDE4" opacity=".3"/>
+            <circle cx="470" cy="372" r="22" fill="#F3EDE4" opacity=".25"/>
+            <circle cx="520" cy="366" r="16" fill="#E3A94F" opacity=".45"/>
+          </svg>
+        </div>
+        <figcaption class="cap"><span class="tag">Family · High Park</span><h3>Late afternoon, no plan B</h3><p>Delivered same week</p></figcaption>
+      </figure>
+
+      <figure class="tile tile-f reveal" style="--d:5">
+        <div class="media g6" role="img" aria-label="Abstract gradient artwork evoking a warm portrait under golden light">
+          <svg viewBox="0 0 600 800" aria-hidden="true">
+            <path d="M300 60 C420 160 420 340 300 440 C180 340 180 160 300 60 Z" fill="#E3A94F" opacity=".32"/>
+            <circle cx="300" cy="200" r="50" fill="#F3EDE4" opacity=".3"/>
+            <line x1="300" y1="440" x2="300" y2="760" stroke="#171310" stroke-width="30" opacity=".5"/>
+          </svg>
+        </div>
+        <figcaption class="cap"><span class="tag">Elopement · Toronto rooftops</span><h3>Two hours, one story</h3><p>42 edited frames</p></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ process ============ -->
+  <section class="wrap" id="process" aria-labelledby="process-h" style="padding-block:var(--sec)">
+    <div class="proc">
+      <div class="proc-side">
+        <p class="over reveal" style="--d:0">How it works</p>
+        <h2 id="process-h" class="disp h2 reveal" style="--d:1">From hello<br>to heirloom</h2>
+        <p class="num disp" aria-hidden="true" id="procNum">01</p>
+      </div>
+      <div class="proc-steps">
+        <div class="step" data-n="1">
+          <p class="st">Step one</p>
+          <h3>The conversation</h3>
+          <p>Before any camera comes out, we talk — how the day actually feels to you, who matters in the frames, what you&rsquo;re afraid of missing. Shot lists are built from that, not from a template.</p>
+        </div>
+        <div class="step" data-n="2">
+          <p class="st">Step two</p>
+          <h3>Chasing the light</h3>
+          <p>We scout two locations against the sun, not the calendar. Golden hour and candlelight are the plan; everything else is a graceful fallback. Mid-day shoot under a flat sky is the one thing we never book.</p>
+        </div>
+        <div class="step" data-n="3">
+          <p class="st">Step three</p>
+          <h3>The session itself</h3>
+          <p>Unhurried. Direction only when it helps — most of what we deliver is the moment between the instructions. If someone&rsquo;s laughing at something nobody else heard, that&rsquo;s the frame.</p>
+        </div>
+        <div class="step" data-n="4">
+          <p class="st">Step four</p>
+          <h3>Editing &amp; delivery</h3>
+          <p>Culled down to what you&rsquo;d actually print, colour-matched to the day&rsquo;s warmth, delivered in a private gallery within ten days. Archives are kept for five years — reprinting an old session is always possible.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ sessions / pricing ============ -->
+  <section class="wrap" id="sessions" aria-labelledby="sessions-h" style="padding-block:var(--sec)">
+    <div class="shead">
+      <div>
+        <p class="over reveal" style="--d:0">Book with us</p>
+        <h2 id="sessions-h" class="disp h2 reveal" style="--d:1">Sessions</h2>
+      </div>
+      <p class="lede reveal" style="--d:2">Three ways to work together. Every session includes editing, a private gallery and print rights.</p>
+    </div>
+
+    <div class="tiers">
+      <div class="card reveal" style="--d:0">
+        <p class="tier">The Elopement</p>
+        <p class="price disp">$650</p>
+        <p class="dur">2 hours · one location · up to 40 edited frames</p>
+        <ul>
+          <li>Golden-hour or sunset planning</li>
+          <li>Private online gallery, 10-day delivery</li>
+          <li>Full print &amp; share rights</li>
+        </ul>
+        <a class="go" href="#top">Reserve a date <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="card featured reveal" style="--d:1">
+        <span class="badge">Most booked</span>
+        <p class="tier">The Half Day</p>
+        <p class="price disp">$1,400</p>
+        <p class="dur">4 hours · two locations · up to 120 edited frames</p>
+        <ul>
+          <li>Getting-ready + ceremony coverage</li>
+          <li>Portrait session included</li>
+          <li>Print-release scan set, colour-matched</li>
+          <li>Timeline help &amp; shot list built with you</li>
+        </ul>
+        <a class="go" href="#top">Reserve a date <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+
+      <div class="card reveal" style="--d:2">
+        <p class="tier">The Full Story</p>
+        <p class="price disp">$2,600</p>
+        <p class="dur">8 hours · full day · unlimited frames, heirloom album</p>
+        <ul>
+          <li>Prep to last dance, unhurried</li>
+          <li>Two locations plus evening portraits</li>
+          <li>Hand-selected archival album (10 pages)</li>
+          <li>Session archive kept for five years</li>
+        </ul>
+        <a class="go" href="#top">Reserve a date <span class="arr" aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ testimonial ============ -->
+  <section class="quote-sec wrap" id="kindwords" aria-labelledby="quote-h">
+    <h2 id="quote-h" class="over reveal" style="--d:0;text-align:center;margin-bottom:34px">Kind words</h2>
+    <blockquote class="quote reveal" style="--d:1">
+      <p class="mark-g" aria-hidden="true">“</p>
+      <p class="q disp">We didn&rsquo;t hire a photographer, we hired someone who <span class="accent">remembers things the way we do</span>. The photos feel like the day actually felt.</p>
+      <cite><b>Mara &amp; Jonas</b> — Half Day, Toronto rooftop wedding</cite>
+    </blockquote>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap fgrid">
+    <div class="fbrand">
+      <p class="mark"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="10" fill="none" stroke="#E3A94F" stroke-width="1.4"/><circle cx="12" cy="12" r="4.5" fill="#E3A94F"/></svg><span>Lumen&nbsp;&amp;&nbsp;Co.</span></p>
+      <p>Wedding &amp; portrait photography. Warm light, unhurried sessions, frames that feel like memory.</p>
+    </div>
+    <div>
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:hello@lumenco.example">hello@lumenco.example</a></li>
+        <li><a href="tel:+14165550142">(416) 555-0142</a></li>
+        <li>12 Distillery Lane, Toronto, ON</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Studio</h4>
+      <ul>
+        <li>Tue–Sat · 9–17</li>
+        <li>By appointment only</li>
+        <li>Sessions across the GTA</li>
+      </ul>
+    </div>
+    <div>
+      <h4>Follow</h4>
+      <ul>
+        <li><a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram (placeholder link)">Instagram</a></li>
+        <li><a href="https://www.pinterest.com/" target="_blank" rel="noopener" aria-label="Pinterest (placeholder link)">Pinterest</a></li>
+        <li><a href="#top" aria-label="Journal — scrolls to top (placeholder)">The Journal</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="wrap base">
+    <span>© 2026 Lumen &amp; Co. — fictional studio for a portfolio sample.</span>
+    <span>Built by <a href="https://mementostudioshop.etsy.com" target="_blank" rel="noopener">MEMENTO</a> · custom web design · <a href="index.html">see more directions</a></span>
+  </div>
+</footer>
+
+<script>
+addEventListener('load', () => document.body.classList.add('loaded'));
+setTimeout(() => document.body.classList.add('loaded'), 1500); // safety net if load stalls
+
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+const revealAll = () => document.querySelectorAll('.reveal').forEach(el => el.classList.add('in'));
+
+if (reduce || !('IntersectionObserver' in window)) {
+  revealAll();
+} else {
+  try {
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      }
+    }, { threshold: 0.05, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    const numEl = document.getElementById('procNum');
+    const stepIO = new IntersectionObserver(entries => {
+      for (const e of entries) {
+        if (e.isIntersecting) {
+          document.querySelectorAll('.step').forEach(s => s.classList.remove('active'));
+          e.target.classList.add('active');
+          if (numEl) numEl.textContent = String(e.target.dataset.n).padStart(2, '0');
+        }
+      }
+    }, { rootMargin: '-45% 0px -45% 0px' });
+    document.querySelectorAll('.step').forEach(el => stepIO.observe(el));
+    setTimeout(revealAll, 2200); // safety net: nothing can stay hidden if IO stalls
+  } catch (err) { revealAll(); }
+}
+
+// When embedded in the showcase (srcdoc iframe), "back" links return to it instead of navigating.
+if (window.self !== window.top) {
+  document.querySelectorAll('a[href="index.html"]').forEach(a => a.addEventListener('click', ev => {
+    ev.preventDefault(); parent.postMessage('memento-back', '*');
+  }));
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Nook — Sounds for falling asleep faster</title>
+<meta name="description" content="A portfolio sample page built by MEMENTO Studio for a fictional sleep-sound app. Bento grid, light neutral premium, pure-CSS product mock.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Manrope:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F4F1EC; --ink:#1C1B18; --indigo:#4A47A8; --indigo-soft:#6D68C7;
+  --lilac:#DCD6F2; --lilac-deep:#C9BFE8; --cream:#FFFDF9; --muted:#6F6A60;
+  --line:rgba(28,27,24,.14); --gap:20px; --r:18px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font:400 16px/1.65 Inter,system-ui,sans-serif;-webkit-font-smoothing:antialiased}
+::selection{background:var(--lilac)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--indigo);outline-offset:3px;border-radius:6px}
+.disp{font-family:Manrope,system-ui,sans-serif;font-weight:800;letter-spacing:-.02em}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+section[id]{scroll-margin-top:96px}
+
+/* grain + progress ------------------------------------------------------ */
+.grain{position:fixed;inset:0;z-index:30;pointer-events:none;opacity:.055;mix-blend-mode:multiply;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23g)'/%3E%3C/svg%3E")}
+.progress{position:fixed;top:0;left:0;width:100%;height:3px;background:var(--indigo);z-index:50;
+  transform:scaleX(0);transform-origin:left}
+@supports (animation-timeline: scroll()){
+  .progress{animation:pgrow linear;animation-timeline:scroll(root)}
+  @keyframes pgrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+}
+
+/* header --------------------------------------------------------------- */
+.top{position:sticky;top:0;z-index:40;background:rgba(244,241,236,.84);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+.top .row{display:flex;align-items:center;gap:28px;padding:12px 24px;max-width:1120px;margin:0 auto}
+.logo{font:800 20px Manrope;letter-spacing:-.02em;display:flex;align-items:center;gap:9px}
+.logo i{width:11px;height:11px;border-radius:99px;background:var(--indigo)}
+.top nav{margin-left:auto;display:flex;gap:22px;font-size:14px;font-weight:500;color:var(--muted)}
+.top nav a{transition:color .25s var(--ease)}
+.top nav a:hover{color:var(--ink)}
+.hbtn{padding:9px 16px;border-radius:99px;background:var(--indigo);color:#F7F4EE;font:600 14px Inter;transition:translate .3s var(--ease),box-shadow .3s var(--ease)}
+.hbtn:hover{translate:0 -2px;box-shadow:0 10px 22px -8px rgba(74,71,168,.5)}
+
+/* bento grid ----------------------------------------------------------- */
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap)}
+.t4{grid-column:span 4}.t5{grid-column:span 5}.t6{grid-column:span 6}
+.t7{grid-column:span 7}.t8{grid-column:span 8}.t12{grid-column:span 12}
+.tile{position:relative;background:var(--cream);border:1px solid var(--line);border-radius:var(--r);
+  padding:26px;transition:translate .35s var(--ease),box-shadow .35s var(--ease)}
+.tile:hover{translate:0 -6px;box-shadow:0 20px 44px -18px rgba(28,27,24,.26)}
+.tile.lilac{background:var(--lilac)}
+.tile.tint{background:#ECE7F5}
+.tile.dark{background:var(--indigo);color:#EFEBF7}
+.tile.dark .muted{color:#B9B3D8}
+.muted{color:var(--muted)}
+.kicker{font:600 12px Inter;letter-spacing:.16em;text-transform:uppercase;color:var(--indigo)}
+.tile.dark .kicker{color:#CDC6EE}
+h2.sec{font:800 clamp(26px,3.4vw,40px)/1.15 Manrope;letter-spacing:-.02em;margin:74px 0 10px}
+.sec-sub{color:var(--muted);max-width:56ch;margin-bottom:26px}
+
+/* kinetic hero --------------------------------------------------------- */
+.hero{padding:64px 0 10px}
+.h-title{font:800 clamp(34px,5.2vw,60px)/1.08 Manrope;letter-spacing:-.025em;margin:14px 0 18px}
+.js .w{display:inline-block;opacity:0}
+.js .loaded .w{animation:wordIn .9s var(--ease) backwards;animation-delay:calc(var(--i,0)*.1s)}
+@keyframes wordIn{from{opacity:0;translate:0 26px}to{opacity:1;translate:0 0}}
+.hero-copy p{color:var(--muted);max-width:44ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin:26px 0 14px}
+.btn{display:inline-flex;align-items:center;gap:10px;padding:14px 22px;border-radius:99px;
+  background:var(--indigo);color:#F7F4EE;font:600 15px Inter;border:none;cursor:pointer;
+  transition:translate .3s var(--ease),box-shadow .3s var(--ease)}
+.btn:hover{translate:0 -3px;box-shadow:0 16px 30px -10px rgba(74,71,168,.55)}
+.btn svg{transition:translate .3s var(--ease)}
+.btn:hover svg{translate:5px 0}
+.btn.inv{background:var(--cream);color:var(--ink)}
+.btn.inv:hover{box-shadow:0 16px 30px -10px rgba(28,27,24,.4)}
+.ghost{display:inline-flex;align-items:center;padding:14px 18px;border-radius:99px;border:1px solid var(--line);
+  font:600 15px Inter;transition:translate .3s var(--ease),background .3s var(--ease)}
+.ghost:hover{translate:0 -3px;background:#F7F2E8}
+.trust{font-size:13px;color:var(--muted)}
+
+/* app mock ------------------------------------------------------------- */
+.mocktile{display:flex;align-items:center;justify-content:center}
+.mock{position:relative;aspect-ratio:7/9;width:min(100%,330px);border-radius:26px;background:var(--cream);
+  border:1px solid var(--line);box-shadow:0 30px 60px -24px rgba(28,27,24,.35);padding:18px;
+  display:flex;flex-direction:column;gap:13px;overflow:hidden}
+.mbar{display:flex;align-items:center;gap:10px;font:600 12px Inter;color:var(--muted)}
+.mbar svg{margin-left:auto;color:var(--indigo)}
+.mbat{width:34px;height:12px;border:1px solid var(--line);border-radius:4px;padding:2px}
+.mbat i{display:block;height:100%;width:76%;border-radius:2px;background:var(--indigo)}
+.mhead b{display:block;font:800 22px Manrope;letter-spacing:-.02em}
+.mhead span{font-size:12px;color:var(--muted)}
+.mnow{display:flex;align-items:center;gap:12px;padding:12px;border-radius:14px;background:#F4EFE7;border:1px solid var(--line)}
+.play{width:38px;height:38px;border-radius:99px;background:var(--indigo);display:grid;place-items:center;color:#F7F4EE;flex:none}
+.mnow b{font:600 14px Inter;display:block}
+.mnow small{font-size:11px;color:var(--muted)}
+.mvol{margin-left:auto;width:52px;height:6px;border-radius:99px;background:#E4DCCF;flex:none}
+.mvol i{display:block;height:100%;width:62%;border-radius:99px;background:var(--indigo-soft)}
+.wave{display:flex;gap:5px;align-items:flex-end;height:116px;padding:0 2px}
+.wave i{flex:1;border-radius:6px 6px 2px 2px;height:var(--h,40%);transform-origin:bottom;
+  background:linear-gradient(180deg,var(--indigo-soft),var(--indigo))}
+.js .wave i{animation:breathe calc(1.9s + var(--i,0)*.12s) ease-in-out infinite;animation-delay:calc(var(--i,0)*-.13s)}
+@keyframes breathe{50%{scale:1 .5}}
+.mfoot{display:flex;align-items:center;justify-content:space-between;font-size:12px;color:var(--muted);margin-top:auto}
+.mpill{padding:6px 12px;border-radius:99px;background:var(--lilac);color:#413E8F;font-weight:600}
+
+/* feature mock canvases ------------------------------------------------ */
+.canvas{position:relative;aspect-ratio:16/9;border-radius:14px;background:#F4EFE7;border:1px solid var(--line);
+  overflow:hidden;display:flex;align-items:center;justify-content:center;margin-top:16px}
+.dial{position:relative;width:150px;height:150px;border-radius:50%;display:grid;place-items:center;
+  background:conic-gradient(var(--indigo) 62%,var(--lilac) 62% 100%)}
+.dial::after{content:"";position:absolute;inset:9px;border-radius:50%;background:var(--cream)}
+.dial b{position:relative;z-index:1;font:800 24px Manrope}
+.dial small{position:relative;z-index:1;font:500 11px Inter;color:var(--muted);display:block}
+.mix{position:absolute;inset:18px;display:flex;flex-direction:column;gap:14px;justify-content:center}
+.frow{display:flex;align-items:center;gap:12px}
+.fname{width:118px;font:500 13px Inter;color:var(--ink)}
+.ftrack{flex:1;height:10px;border-radius:99px;background:#E2DACB}
+.ftrack i{display:block;height:100%;border-radius:99px;background:var(--indigo)}
+.ftrack.alt i{background:var(--lilac-deep)}
+.fval{font:600 12px Inter;color:var(--muted);width:36px;text-align:right}
+.steps{display:flex;flex-direction:column;gap:10px;margin-top:18px;border-top:1px solid var(--line);padding-top:16px}
+.steps div{display:flex;gap:12px;align-items:baseline;font-size:14px;color:var(--muted)}
+.steps b{font:700 12px Manrope;color:var(--indigo);letter-spacing:.08em}
+.spark{display:flex;gap:4px;align-items:flex-end;height:34px;margin-top:14px}
+.spark i{flex:1;border-radius:3px;background:var(--lilac-deep);height:var(--h,40%)}
+.spark i:last-child{background:var(--indigo)}
+.dotlist{list-style:none;display:flex;flex-direction:column;gap:12px;margin-top:16px;font-size:15px}
+.dotlist li{display:flex;gap:12px;align-items:baseline}
+.dotlist li::before{content:"";width:8px;height:8px;border-radius:99px;background:var(--indigo);flex:none}
+.taper{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:6px;padding:0 26px}
+.taper i{flex:1;border-radius:99px;background:#4A47A8;opacity:.9;height:var(--h,40%)}
+.taper i:nth-child(2){height:34%}.taper i:nth-child(3){height:26%}.taper i:nth-child(4){height:20%}
+.taper i:nth-child(5){height:14%}.taper i:nth-child(6){height:9%}.taper i:nth-child(7){height:5%}
+.ico{width:34px;height:34px;border-radius:12px;background:#2E2C44;display:grid;place-items:center;color:#CDC6EE}
+
+/* stats ---------------------------------------------------------------- */
+.num{display:inline-block;font:800 clamp(30px,3.6vw,44px)/1 Manrope;letter-spacing:-.03em;
+  transition:scale .3s var(--ease),color .3s var(--ease)}
+.num:hover{scale:1.06;color:var(--indigo)}
+.star{display:inline-flex;gap:3px;color:var(--indigo);margin:6px 0}
+.lbl{font-size:14px;color:var(--muted);margin-top:6px;max-width:30ch}
+.tile.dark .lbl{color:#C8C1E4}
+
+/* chips ---------------------------------------------------------------- */
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:9px 14px;border-radius:99px;
+  border:1px solid var(--line);background:var(--cream);font:500 13px Inter;
+  transition:background .25s var(--ease),color .25s var(--ease),translate .25s var(--ease)}
+.chip i{width:7px;height:7px;border-radius:99px;background:var(--indigo)}
+.chip:hover{background:var(--indigo);color:#F4F1EC;translate:0 -2px}
+.chip:hover i{background:var(--lilac)}
+
+/* testimonial ---------------------------------------------------------- */
+.quote{font:700 clamp(18px,2.2vw,24px)/1.45 Manrope;letter-spacing:-.01em}
+.cite{display:flex;align-items:center;gap:12px;margin-top:18px;font-size:13px;color:var(--muted)}
+.avatar{width:38px;height:38px;border-radius:99px;background:var(--indigo);color:#F7F4EE;
+  display:grid;place-items:center;font:700 14px Manrope}
+.lilac .cite{color:#454283}
+
+/* download CTA --------------------------------------------------------- */
+.cta-tile{padding:44px;display:flex;flex-wrap:wrap;align-items:center;gap:30px}
+.cta-tile h2{font:800 clamp(28px,4vw,44px)/1.1 Manrope;letter-spacing:-.02em;max-width:14ch}
+.cta-actions{margin-left:auto;display:flex;flex-wrap:wrap;gap:12px}
+.fine{font-size:13px;color:#C8C1E4;margin-top:12px}
+
+/* footer --------------------------------------------------------------- */
+footer{border-top:1px solid var(--line);margin-top:80px;padding:26px 0 40px}
+.frow2{display:flex;flex-wrap:wrap;gap:18px;align-items:center;font-size:13px;color:var(--muted)}
+.frow2 .logo{font-size:17px}
+.frow2 .mementio{margin-left:auto}
+.frow2 a:hover{color:var(--ink)}
+
+/* reveals --------------------------------------------------------------- */
+.js .reveal{opacity:0;translate:0 24px;transition:opacity .8s var(--ease),translate .8s var(--ease);
+  transition-delay:calc(var(--d,0)*90ms)}
+.js .reveal.in{opacity:1;translate:none}
+
+/* responsive ------------------------------------------------------------ */
+@media (max-width:980px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .t12,.t8,.t7,.t5{grid-column:span 2}
+  .t4,.t6{grid-column:span 1}
+  .hero{padding-top:44px}
+  .top nav{gap:14px}
+}
+@media (max-width:640px){
+  .grid{grid-template-columns:1fr}
+  .t12,.t8,.t7,.t6,.t5,.t4{grid-column:span 1}
+  .top nav a{display:none}
+  .wrap{padding:0 16px}
+  .tile{padding:20px}
+  .cta-tile{padding:26px}
+  .cta-actions{margin-left:0}
+  .mock{width:min(100%,290px)}
+  .dial{width:120px;height:120px}
+  .fname{width:84px}
+  .wave{height:92px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .js .w{opacity:1}
+  .js .reveal{opacity:1;translate:none}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="progress" aria-hidden="true"></div>
+
+<header class="top">
+  <div class="row">
+    <span class="logo"><i></i>Nook</span>
+    <nav>
+      <a href="#features">Features</a>
+      <a href="#sounds">Sounds</a>
+      <a href="#stories">Stories</a>
+    </nav>
+    <a class="hbtn" href="#get">Get Nook</a>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- 1 · hero + big app mock -->
+  <section class="hero" id="top">
+    <div class="grid">
+      <div class="tile t5 hero-copy reveal" style="--d:0">
+        <span class="kicker">Nook — sounds for falling asleep faster</span>
+        <h1 class="h-title"><span class="w" style="--i:0">Falling</span> <span class="w" style="--i:1">asleep</span> <span class="w" style="--i:2">faster.</span></h1>
+        <p>Nook layers gentle soundscapes, then quietly fades them to silence — so you drift off, and the night stays asleep instead of waking you.</p>
+        <div class="cta">
+          <a class="btn" href="#get">Download Nook
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg>
+          </a>
+          <a class="ghost" href="#features">See how it works</a>
+        </div>
+        <span class="trust">Free 7-day trial · iOS &amp; Android · no account needed</span>
+        <div class="steps" aria-label="How tonight works">
+          <div><b>01</b><span>Pick a mix — rain, thunder, hum.</span></div>
+          <div><b>02</b><span>Tap once, set the wind-down time.</span></div>
+          <div><b>03</b><span>Put the phone face-down. That’s it.</span></div>
+        </div>
+      </div>
+
+      <div class="tile t7 mocktile reveal" style="--d:1">
+        <div class="mock" role="img" aria-label="Nook app interface preview: wind-down timer with a breathing sound waveform">
+          <div class="mbar">
+            <span>22:14</span>
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+            <span class="mbat"><i></i></span>
+          </div>
+          <div class="mhead"><b>Wind-down</b><span>4 steps · ends at 22:30</span></div>
+          <div class="mnow">
+            <span class="play"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>
+            <span><b>Rain on canvas</b><small>Looping · fades out slowly</small></span>
+            <span class="mvol"><i></i></span>
+          </div>
+          <div class="wave" aria-hidden="true">
+            <i style="--i:0;--h:30%"></i><i style="--i:1;--h:52%"></i><i style="--i:2;--h:36%"></i>
+            <i style="--i:3;--h:64%"></i><i style="--i:4;--h:44%"></i><i style="--i:5;--h:78%"></i>
+            <i style="--i:6;--h:34%"></i><i style="--i:7;--h:58%"></i><i style="--i:8;--h:48%"></i>
+            <i style="--i:9;--h:82%"></i><i style="--i:10;--h:40%"></i><i style="--i:11;--h:66%"></i>
+            <i style="--i:12;--h:52%"></i><i style="--i:13;--h:72%"></i><i style="--i:14;--h:36%"></i>
+            <i style="--i:15;--h:60%"></i><i style="--i:16;--h:46%"></i><i style="--i:17;--h:68%"></i>
+          </div>
+          <div class="mfoot"><span>Next: Distant thunder</span><span class="mpill">Auto-mix</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2 · bento feature grid -->
+  <section id="features">
+    <h2 class="sec">Built for the last hour of your day.</h2>
+    <p class="sec-sub">No dashboards, no sleep science homework. Nook does one thing: it takes the noise down until there is nothing left to listen to.</p>
+    <div class="grid">
+      <div class="tile t6 reveal" style="--d:0">
+        <span class="kicker">Wind-down timer</span>
+        <h3 class="disp" style="font-size:22px;margin-top:10px">It fades, it never stops.</h3>
+        <p class="muted">Pick a time and Nook tapers the volume step by step until the sound simply disappears — no hard cut that wakes you up.</p>
+        <div class="canvas" role="img" aria-label="Wind-down timer dial showing 62 percent remaining">
+          <div class="dial"><b>22:30</b><small>silent at</small></div>
+        </div>
+      </div>
+
+      <div class="tile t6 reveal" style="--d:1">
+        <span class="kicker">Sound mixer</span>
+        <h3 class="disp" style="font-size:22px;margin-top:10px">Layer two or three, once.</h3>
+        <p class="muted">Rain over distant thunder, fan hum underneath. Set levels once, and Nook remembers tonight’s mix.</p>
+        <div class="canvas" role="img" aria-label="Mixer with three faders: rain 70, thunder 25, fan hum 40">
+          <div class="mix">
+            <div class="frow"><span class="fname">Rain on canvas</span><span class="ftrack"><i style="width:70%"></i></span><span class="fval">70</span></div>
+            <div class="frow"><span class="fname">Distant thunder</span><span class="ftrack alt"><i style="width:25%"></i></span><span class="fval">25</span></div>
+            <div class="frow"><span class="fname">Fan hum</span><span class="ftrack alt"><i style="width:40%"></i></span><span class="fval">40</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="tile t4 stat reveal" style="--d:0">
+        <span class="num">4.9</span>
+        <span class="star" aria-label="Rated 4.9 out of 5">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z"/></svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l3.1 6.3 6.9 1-5 4.9 1.2 6.9-6.2-3.3-6.2 3.3 1.2-6.9-5-4.9 6.9-1z"/></svg>
+        </span>
+        <p class="lbl">12,318 App Store ratings. Reviewers mention one word most often: <em>quiet</em>.</p>
+      </div>
+
+      <div class="tile t8 reveal" style="--d:1">
+        <span class="kicker">Zero setup</span>
+        <h3 class="disp" style="font-size:24px;margin-top:10px">Nothing to learn.</h3>
+        <ul class="dotlist">
+          <li>No ads, ever — the sound doesn’t pause for anything.</li>
+          <li>No account. Download, tap once, put your phone down.</li>
+          <li>Works offline in bed, at 12 percent battery, in airplane mode.</li>
+        </ul>
+      </div>
+
+      <div class="tile t4 lilac reveal" style="--d:0">
+        <span class="kicker">Sleep taper</span>
+        <p style="font:700 17px/1.5 Manrope;margin-top:10px;color:#3D3A7E">Sound tapers to silence on a curve we tuned for real bedrooms — soft enough that you never notice the last step disappear.</p>
+        <div class="canvas" role="img" aria-label="Waveform tapering to silence">
+          <div class="taper"><i style="--h:40%"></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        </div>
+      </div>
+
+      <div class="tile t4 dark reveal" style="--d:1">
+        <span class="kicker">Offline first</span>
+        <div class="ico" aria-hidden="true"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 22l20-20"/><path d="M8.5 12.5a6 6 0 0 1 7 0"/><path d="M5 9a10 10 0 0 1 14 0"/></svg></div>
+        <p class="lbl" style="margin-top:14px">Every soundscape ships inside the app. No streaming, no loading spinner, nothing that needs Wi-Fi at midnight.</p>
+      </div>
+
+      <div class="tile t4 stat reveal" style="--d:2">
+        <span class="num">−14&nbsp;min</span>
+        <div class="spark" aria-hidden="true"><i style="--h:92%"></i><i style="--h:78%"></i><i style="--h:64%"></i><i style="--h:55%"></i><i style="--h:42%"></i><i style="--h:30%"></i></div>
+        <p class="lbl">Average time to fall asleep, down from 42 minutes in the first week of use. Nook measures the gap by last sound heard.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3 · sound library chips -->
+  <section id="sounds">
+    <h2 class="sec">Thirty sounds. Recorded, not generated.</h2>
+    <p class="sec-sub">Field recordings in real rooms — rain on canvas, a far storm, a wood stove at 3am. Loop seamlessly, mix freely.</p>
+    <div class="tile t12 lilac reveal" style="--d:0">
+      <div class="chips">
+        <span class="chip"><i></i>Rain on canvas</span>
+        <span class="chip"><i></i>Distant thunder</span>
+        <span class="chip"><i></i>Ocean tide</span>
+        <span class="chip"><i></i>Fan hum</span>
+        <span class="chip"><i></i>Fireplace crackle</span>
+        <span class="chip"><i></i>Night birds</span>
+        <span class="chip"><i></i>Wind through pines</span>
+        <span class="chip"><i></i>Soft drone</span>
+        <span class="chip"><i></i>White noise</span>
+        <span class="chip"><i></i>Sleep radio static</span>
+        <span class="chip"><i></i>+ 20 more</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4 · testimonials + stats -->
+  <section id="stories">
+    <h2 class="sec">Nights people changed.</h2>
+    <p class="sec-sub">Real feedback from early testers — collected in-app, one tap after waking.</p>
+    <div class="grid">
+      <div class="tile t7 reveal" style="--d:0">
+        <p class="quote">“I stopped waking up at 3am listening for the noise to stop. It just fades — I wake up and it’s gone. That’s the whole app.”</p>
+        <div class="cite"><span class="avatar" aria-hidden="true">M</span><span>Maya R. · Toronto · using Nook for 87 nights</span></div>
+      </div>
+      <div class="tile t5 lilac reveal" style="--d:1">
+        <p class="quote" style="color:#3D3A7E">“My partner snores, our kid has a nightlight, and rain over thunder covers all of it. First night, everyone slept.”</p>
+        <div class="cite"><span class="avatar" aria-hidden="true">J</span><span>Jon &amp; Priya · Hamilton</span></div>
+      </div>
+
+      <div class="tile t4 stat reveal" style="--d:0"><span class="num">120K</span><p class="lbl">Sleepers using Nook every night.</p></div>
+      <div class="tile t4 stat reveal" style="--d:1"><span class="num">1.2M</span><div class="spark" aria-hidden="true"><i style="--h:30%"></i><i style="--h:40%"></i><i style="--h:34%"></i><i style="--h:52%"></i><i style="--h:46%"></i><i style="--h:66%"></i></div><p class="lbl">Hours slept with Nook running, and none ended with an abrupt stop.</p></div>
+      <div class="tile t4 stat reveal" style="--d:2"><span class="num">30/0</span><p class="lbl">Thirty soundscapes, zero ads. No subscription, no upsell screen at 2am.</p></div>
+    </div>
+  </section>
+
+  <!-- 5 · download CTA -->
+  <section id="get">
+    <div class="tile t12 dark cta-tile reveal" style="--d:0">
+      <div>
+        <span class="kicker">Start tonight</span>
+        <h2 style="margin-top:12px">Put the night down.</h2>
+        <p class="muted" style="margin-top:10px;max-width:40ch">Download Nook, pick a sound, tap once. Seven nights free, then $6/month — or keep the mix forever for $29.</p>
+      </div>
+      <div class="cta-actions">
+        <a class="btn inv" href="https://apps.apple.com/" target="_blank" rel="noopener" aria-label="App Store (placeholder link)">App Store
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn inv" href="https://play.google.com/" target="_blank" rel="noopener" aria-label="Google Play (placeholder link)">Google Play
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 12h15"/><path d="M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+      <span class="fine" style="width:100%">No account · works offline · cancel anytime</span>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap frow2">
+    <span class="logo"><i></i>Nook</span>
+    <span>© 2026 Nook Labs — fictional demo product</span>
+    <span class="mementio">Showcase build by <a href="https://mementostudioshop.etsy.com" target="_blank" rel="noopener">MEMENTO Studio</a> · custom web design · <a href="index.html">see more directions</a></span>
+  </div>
+</footer>
+
+<script>
+var html = document.documentElement;
+html.classList.remove('no-js'); html.classList.add('js');
+document.body.classList.add('loaded');
+
+function revealAll(){ document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); }); }
+if ('IntersectionObserver' in window) {
+  try {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.05 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+    setTimeout(revealAll, 2200); // safety net: nothing stays hidden if IO stalls
+  } catch (err) { revealAll(); }
+} else {
+  revealAll();
+}
+
+// When embedded in the showcase (srcdoc iframe), "back" links return to it instead of navigating.
+if (window.self !== window.top) {
+  document.querySelectorAll('a[href="index.html"]').forEach(function (a) {
+    a.addEventListener('click', function (ev) { ev.preventDefault(); parent.postMessage('memento-back', '*'); });
+  });
+}
+</script>
+</body>
+</html>

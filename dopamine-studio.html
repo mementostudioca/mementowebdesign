@@ -1,0 +1,506 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Popshop Studio — Brand &amp; Content Design</title>
+<meta name="description" content="A dopamine-bright showcase landing page for Popshop Studio: brand identity, web design, packaging, and content for brands that refuse to be ignored.">
+<meta name="theme-color" content="#FFE86B">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ============ tokens ============ */
+:root{
+  --lime:#FFE86B; --violet:#7C4DFF; --coral:#FF6B57; --plum:#2B1B4A;
+  --cream:#FFF9F2; --aqua:#31CFFF; --pink:#FF7AC6;
+  --line:3px solid var(--plum); --r:22px;
+  --ease:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--cream);color:var(--plum);
+  font:400 16px/1.65 Inter,system-ui,sans-serif;overflow-x:hidden}
+h1,h2,h3{font-family:Outfit,sans-serif;font-weight:900;line-height:1.03;
+  letter-spacing:-.02em;margin:0}
+a{color:inherit;text-decoration:none}
+img,svg{display:block}
+::selection{background:var(--lime)}
+:focus-visible{outline:3px solid var(--coral);outline-offset:2px;border-radius:8px}
+.wrap{max-width:1160px;margin:0 auto;padding:0 24px}
+section[id]{scroll-margin-top:96px}
+
+/* ============ grain ============ */
+.grain{position:fixed;inset:0;z-index:60;pointer-events:none;opacity:.05;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+/* ============ header ============ */
+header{position:sticky;top:0;z-index:50;background:var(--cream);border-bottom:var(--line)}
+.nav{display:flex;align-items:center;gap:14px;padding:14px 24px}
+.logo{font:900 22px Outfit;letter-spacing:-.02em}
+.logo .dot{color:var(--coral)}
+.nav .links{display:flex;gap:6px;margin-left:auto}
+.navlink{font:600 14px Inter;padding:8px 14px;border-radius:999px}
+.navlink:hover{background:var(--lime)}
+.nav .cta-mini{font:700 14px Outfit;background:var(--violet);color:var(--cream);
+  border:var(--line);border-radius:999px;padding:9px 18px;box-shadow:3px 3px 0 var(--plum)}
+.nav .cta-mini:hover{translate:0 -2px}
+.nav .cta-mini:active{scale:.96}
+
+/* ============ buttons ============ */
+.btn{display:inline-flex;align-items:center;gap:10px;font:800 16px Outfit;
+  border:var(--line);border-radius:999px;padding:14px 26px;background:var(--lime);
+  color:var(--plum);box-shadow:4px 4px 0 var(--plum);cursor:pointer;
+  transition:translate .25s var(--ease),scale .12s ease,box-shadow .25s ease}
+.btn:hover{translate:0 -3px;box-shadow:4px 7px 0 var(--plum)}
+.btn:active{scale:.96;box-shadow:2px 2px 0 var(--plum)}
+.btn.dark{background:var(--plum);color:var(--cream)}
+.btn.ghost{background:#fff;box-shadow:none}
+.btn .arrow{transition:translate .3s var(--ease)}
+.btn:hover .arrow{translate:6px 0}
+
+/* ============ hero ============ */
+.hero{position:relative;overflow:hidden;padding:76px 0 60px;
+  background:
+    radial-gradient(420px 300px at 92% 6%, rgba(255,232,107,.55), transparent 70%),
+    radial-gradient(360px 280px at 4% 88%, rgba(124,77,255,.18), transparent 70%),
+    radial-gradient(300px 240px at 70% 96%, rgba(255,107,87,.22), transparent 70%)}
+.deco{position:absolute;pointer-events:none;z-index:0}
+.deco svg{width:100%;height:100%}
+.b1{top:-30px;right:-70px;width:380px;animation:drift 18s ease-in-out infinite alternate}
+.b2{bottom:-40px;left:-90px;width:300px;animation:drift 22s ease-in-out infinite alternate-reverse}
+@keyframes drift{from{scale:1;rotate:-2deg}to{scale:1.12;rotate:9deg}}
+.hero .wrap{position:relative;z-index:1}
+.eyebrow{display:inline-block;font:800 13px Outfit;letter-spacing:.14em;text-transform:uppercase;
+  background:var(--lime);border:var(--line);border-radius:999px;padding:8px 16px;rotate:-3deg}
+.kinetic{margin:20px 0 22px;font-size:clamp(34px,7vw,76px);max-width:920px}
+.kinetic .w{display:inline-block}
+.kinetic .hl{background:var(--lime);border:3px solid var(--plum);border-radius:14px;padding:2px 12px}
+.kinetic .hl2{background:var(--pink)}
+body.loaded .kinetic .w{animation:kw .8s var(--ease) both;animation-delay:calc(var(--i)*90ms)}
+@keyframes kw{from{opacity:0;translate:0 46px;rotate:-5deg;scale:.94}
+             to{opacity:1;translate:0 0;rotate:0deg;scale:1}}
+.lede{max-width:560px;font-size:17px;font-weight:500}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap;margin:26px 0 18px}
+.tagrow{display:flex;gap:8px;flex-wrap:wrap;font:600 13px Inter;color:rgba(43,27,74,.7)}
+.tagrow .t{border:2px solid rgba(43,27,74,.35);border-radius:999px;padding:5px 12px}
+.tagrow .t:hover{background:var(--plum);color:var(--cream)}
+
+/* ============ marquee ============ */
+.strip{border-top:var(--line);border-bottom:var(--line);background:var(--violet);
+  color:var(--cream);overflow:hidden}
+.mq{width:max-content;display:flex;animation:mq 28s linear infinite}
+.mq .row{display:flex;align-items:center;gap:30px;padding:14px 30px;
+  font:800 15px Outfit;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.mq .sep{color:var(--lime);font-size:18px}
+@keyframes mq{to{translate:-50% 0}}
+
+/* ============ reveal (JS-gated) ============ */
+html.anim .reveal{opacity:0;translate:0 30px;
+  transition:opacity .7s ease,translate .8s var(--ease);
+  transition-delay:calc(var(--d,0)*90ms)}
+html.anim .reveal.in{opacity:1;translate:0 0}
+
+/* ============ bento services ============ */
+.services{padding:72px 0 30px}
+.h2{font-size:clamp(28px,4.4vw,46px);max-width:760px}
+.h2 .u{color:var(--coral)}
+.sub{margin:14px 0 0;font-weight:500;max-width:560px}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:20px;margin-top:36px}
+.tile{position:relative;border:var(--line);border-radius:var(--r);background:#fff;
+  padding:22px;box-shadow:0 10px 0 rgba(43,27,74,.08);
+  transition:translate .3s var(--ease),box-shadow .3s ease}
+.tile:hover{translate:0 -8px;box-shadow:0 16px 0 rgba(43,27,74,.12)}
+.tile h3{font-size:20px;font-weight:800;margin:14px 0 6px}
+.tile p{font-size:14px;color:rgba(43,27,74,.75);margin:0}
+.t7{grid-column:span 7}.t6{grid-column:span 6}.t5{grid-column:span 5}.t4{grid-column:span 4}
+.art{position:relative;aspect-ratio:16/10;overflow:hidden;border-radius:16px;
+  border:3px solid var(--plum);scale:1;transition:scale 1.2s var(--ease)}
+.tile:hover .art{scale:1.05}
+.art .g{position:absolute;inset:0}
+.art svg{position:absolute;inset:0;width:100%;height:100%}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.chip{font:600 13px Inter;border:2px solid var(--plum);border-radius:999px;
+  padding:6px 12px;background:#fff;transition:background .25s ease,color .25s ease}
+.chip:hover{background:var(--plum);color:var(--cream)}
+.badge{position:absolute;top:-14px;left:20px;z-index:2;font:800 13px Outfit;
+  border:var(--line);border-radius:999px;padding:6px 14px;background:var(--lime);
+  rotate:-6deg;transition:rotate .3s var(--ease)}
+.tile:hover .badge{rotate:-2deg}
+.badge.c{background:var(--coral);color:var(--cream);rotate:5deg}
+.tile:hover .badge.c{rotate:1deg}
+.quote{background:var(--cream)}
+.quote .q{font:900 clamp(20px,2.4vw,26px) Outfit;line-height:1.25;margin:0}
+.quote .who{display:flex;align-items:center;gap:12px;margin-top:18px;font:600 13px Inter}
+.avatar{width:44px;height:44px;border-radius:50%;border:3px solid var(--plum);
+  background:linear-gradient(135deg,var(--coral),var(--lime))}
+.mini-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:14px}
+.mini{position:relative;aspect-ratio:1/1;border:3px solid var(--cream);border-radius:14px;overflow:hidden}
+.mini .m{position:absolute;inset:0}
+.dark-tile{background:var(--plum);color:var(--cream)}
+.dark-tile p{color:rgba(255,249,242,.7)}
+.dark-tile .badge{background:var(--aqua)}
+
+/* ============ stats ============ */
+.stats-sec{padding:44px 0}
+.stats{border:var(--line);border-radius:28px;background:var(--plum);
+  padding:40px;display:grid;grid-template-columns:repeat(4,1fr);gap:24px}
+.stat{padding:6px;transition:translate .3s var(--ease)}
+.stat:hover{translate:0 -6px}
+.stat .n{font-family:Outfit;font-weight:900;font-size:clamp(38px,6vw,64px);line-height:1}
+.stat:nth-child(1) .n{color:var(--lime)}.stat:nth-child(2) .n{color:var(--aqua)}
+.stat:nth-child(3) .n{color:var(--coral)}.stat:nth-child(4) .n{color:var(--pink)}
+.stat .l{margin-top:8px;font:600 12px Inter;letter-spacing:.12em;text-transform:uppercase;
+  color:rgba(255,249,242,.65)}
+
+/* ============ process ============ */
+.process{padding:60px 0 30px}
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:36px}
+.step{border:var(--line);border-radius:var(--r);background:#fff;padding:24px;
+  box-shadow:0 10px 0 rgba(43,27,74,.08);transition:translate .3s var(--ease),box-shadow .3s ease}
+.step:hover{translate:0 -8px;box-shadow:0 16px 0 rgba(43,27,74,.12)}
+.num{width:56px;height:56px;border-radius:50%;border:var(--line);background:var(--lime);
+  display:grid;place-items:center;font:900 22px Outfit;rotate:-8deg}
+.step:nth-child(2) .num{background:var(--aqua)}
+.step:nth-child(3) .num{background:var(--pink)}
+.step:nth-child(4) .num{background:var(--coral);color:var(--cream)}
+.step h3{font-size:20px;margin:14px 0 6px}
+.step p{font-size:14px;color:rgba(43,27,74,.75);margin:0}
+.step .eta{margin-top:12px;font:700 12px Outfit;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--violet)}
+
+/* ============ CTA ============ */
+.cta-sec{padding:64px 0}
+.cta{border:var(--line);border-radius:30px;background:var(--lime);padding:52px 40px;
+  text-align:center;box-shadow:0 14px 0 rgba(43,27,74,.1)}
+.cta h2{font-size:clamp(30px,5.4vw,56px)}
+.cta p{margin:16px auto 28px;max-width:520px;font-weight:500}
+.confetti{display:flex;justify-content:center;gap:10px;margin-bottom:22px}
+.confetti span{width:14px;height:14px;border:3px solid var(--plum);border-radius:4px}
+.confetti span:nth-child(1){background:var(--coral);rotate:14deg}
+.confetti span:nth-child(2){background:var(--violet);rotate:-20deg;border-radius:50%}
+.confetti span:nth-child(3){background:var(--aqua);rotate:8deg}
+.confetti span:nth-child(4){background:var(--pink);rotate:-12deg;border-radius:50%}
+.confetti span:nth-child(5){background:var(--cream);rotate:22deg}
+
+/* ============ footer ============ */
+footer{border-top:var(--line);padding:44px 0 28px}
+.fgrid{display:grid;grid-template-columns:2fr 1fr 1fr;gap:30px}
+.fmark{font:900 24px Outfit;letter-spacing:-.02em}
+.fmark .dot{color:var(--coral)}
+.fnote{margin-top:10px;font-size:13px;color:rgba(43,27,74,.65);max-width:380px}
+.fcol h4{font:800 13px Outfit;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px}
+.fcol a{display:block;font-size:14px;font-weight:500;padding:4px 0}
+.fcol a:hover{color:var(--coral)}
+.fbot{margin-top:30px;padding-top:16px;border-top:2px solid rgba(43,27,74,.18);
+  display:flex;justify-content:space-between;gap:12px;font-size:12px;color:rgba(43,27,74,.55)}
+
+/* ============ responsive ============ */
+@media (max-width:900px){
+  .bento{grid-template-columns:repeat(2,1fr)}
+  .t7,.t6,.t5,.t4{grid-column:auto}
+  .stats{grid-template-columns:repeat(2,1fr)}
+  .fgrid{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){
+  .nav .links{display:none}
+  .hero{padding:56px 0 44px}
+  .steps{grid-template-columns:1fr}
+  .stats{padding:28px;gap:18px}
+  .cta{padding:36px 22px}
+  .mq .row{gap:22px;font-size:13px;padding:12px 22px}
+  .fgrid{grid-template-columns:1fr}
+  .deco{display:none}
+}
+@media (max-width:560px){
+  .bento{grid-template-columns:1fr}
+}
+
+/* ============ reduced motion ============ */
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  .mq,.deco,body.loaded .kinetic .w{animation:none}
+  html.anim .reveal{opacity:1;translate:0 0;transition:none}
+  .btn,.tile,.step,.stat,.chip,.badge,.art,.btn .arrow{transition:none}
+  .btn:hover,.tile:hover,.step:hover,.stat:hover,.nav .cta-mini:hover{translate:0 0}
+  .btn:hover .arrow{translate:0 0}
+  .tile:hover .art{scale:1}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap nav">
+    <span class="logo">Popshop<span class="dot">●</span>Studio</span>
+    <nav class="links" aria-label="Site">
+      <a class="navlink" href="#services">Services</a>
+      <a class="navlink" href="#process">Process</a>
+      <a class="navlink" href="#start">Start</a>
+    </nav>
+    <a class="cta-mini" href="#start">Get a quote</a>
+  </div>
+</header>
+
+<!-- 1 · HERO -->
+<section class="hero">
+  <div class="deco b1" aria-hidden="true">
+    <svg viewBox="0 0 240 160" preserveAspectRatio="none"><path fill="#7C4DFF" opacity=".35"
+      d="M52 14C112 2 186 26 216 58C246 90 236 128 190 142C144 156 86 150 44 126C2 102 -6 64 16 42C34 24 30 26 52 14Z"/></svg>
+  </div>
+  <div class="deco b2" aria-hidden="true">
+    <svg viewBox="0 0 240 160" preserveAspectRatio="none"><path fill="#FF6B57" opacity=".3"
+      d="M120 8C180 12 226 44 218 84C210 124 158 150 104 146C50 142 10 112 14 74C18 36 62 4 120 8Z"/></svg>
+  </div>
+  <div class="wrap">
+    <span class="eyebrow">Popshop Studio — Brand &amp; Content Design</span>
+    <h1 class="kinetic" aria-label="We make brands impossible to ignore">
+      <span class="w" style="--i:0">We</span> <span class="w" style="--i:1">make</span>
+      <span class="w hl" style="--i:2">brands</span> <span class="w" style="--i:3">impossible</span>
+      <span class="w" style="--i:4">to</span> <span class="w hl hl2" style="--i:5">ignore</span>
+    </h1>
+    <p class="lede">Bold identities, loud websites, and content that stops thumbs —
+      built for cafés, boutiques, and startups who would rather be loved than polite.</p>
+    <div class="hero-actions">
+      <a class="btn" href="#start">Start a project <span class="arrow">→</span></a>
+      <a class="btn ghost" href="#services">See the services</a>
+    </div>
+    <div class="tagrow" aria-hidden="true">
+      <span class="t">Logos</span><span class="t">Web design</span><span class="t">Packaging</span>
+      <span class="t">Social content</span><span class="t">Motion</span>
+    </div>
+  </div>
+</section>
+
+<!-- 2 · MARQUEE -->
+<div class="strip" aria-hidden="true">
+  <div class="mq">
+    <div class="row">
+      <span>Brand Identity</span><span class="sep">✦</span><span>Web Design</span><span class="sep">✦</span>
+      <span>Social Content</span><span class="sep">✦</span><span>Packaging</span><span class="sep">✦</span>
+      <span>Art Direction</span><span class="sep">✦</span><span>Motion</span><span class="sep">✦</span>
+      <span>Campaigns</span><span class="sep">✦</span>
+    </div>
+    <div class="row">
+      <span>Brand Identity</span><span class="sep">✦</span><span>Web Design</span><span class="sep">✦</span>
+      <span>Social Content</span><span class="sep">✦</span><span>Packaging</span><span class="sep">✦</span>
+      <span>Art Direction</span><span class="sep">✦</span><span>Motion</span><span class="sep">✦</span>
+      <span>Campaigns</span><span class="sep">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- 3 · SERVICES BENTO -->
+<section id="services" class="services">
+  <div class="wrap">
+    <div class="reveal" style="--d:0">
+      <h2 class="h2">Services, arranged like <span class="u">sticker sheets.</span></h2>
+      <p class="sub">Pick one tile or the whole sheet. Everything ships with guidelines,
+        templates, and files you can hand to anyone.</p>
+    </div>
+    <div class="bento">
+
+      <div class="tile t7 reveal" style="--d:1">
+        <span class="badge">Most loved ★</span>
+        <div class="art" aria-hidden="true">
+          <div class="g" style="background:linear-gradient(135deg,#7C4DFF,#FF6B57 62%,#FFC466)"></div>
+          <svg viewBox="0 0 240 160" preserveAspectRatio="none">
+            <path fill="rgba(255,255,255,.32)" d="M52 14C112 2 186 26 216 58C246 90 236 128 190 142C144 156 86 150 44 126C2 102 -6 64 16 42C34 24 30 26 52 14Z"/>
+            <path fill="rgba(255,232,107,.55)" d="M168 96c34 6 56 26 50 46s-36 30-64 24-46-20-40-40 20-30 54-30z"/>
+          </svg>
+        </div>
+        <h3>Brand Identity</h3>
+        <p>Logo systems, color, type rules, and a brand kit your team will actually use.</p>
+        <div class="chips">
+          <span class="chip">Logo systems</span><span class="chip">Color</span>
+          <span class="chip">Type</span><span class="chip">Guidelines</span>
+        </div>
+      </div>
+
+      <div class="tile t5 reveal" style="--d:2">
+        <span class="badge c">New!</span>
+        <div class="art" aria-hidden="true">
+          <div class="g" style="background:linear-gradient(160deg,#31CFFF,#7C4DFF)"></div>
+          <svg viewBox="0 0 240 160" preserveAspectRatio="none">
+            <path fill="rgba(255,249,242,.4)" d="M120 8C180 12 226 44 218 84C210 124 158 150 104 146C50 142 10 112 14 74C18 36 62 4 120 8Z"/>
+          </svg>
+        </div>
+        <h3>Web Design</h3>
+        <p>One-pagers, portfolios, product pages. Fast, playful, no template DNA.</p>
+        <div class="chips"><span class="chip">Landing</span><span class="chip">Shop pages</span><span class="chip">Portfolio</span></div>
+      </div>
+
+      <div class="tile t4 reveal" style="--d:3">
+        <div class="art" aria-hidden="true">
+          <div class="g" style="background:linear-gradient(120deg,#FFE86B,#FF7AC6)"></div>
+          <svg viewBox="0 0 240 160" preserveAspectRatio="none">
+            <path fill="rgba(43,27,74,.22)" d="M52 14C112 2 186 26 216 58C246 90 236 128 190 142C144 156 86 150 44 126C2 102 -6 64 16 42C34 24 30 26 52 14Z"/>
+          </svg>
+        </div>
+        <h3>Social Content</h3>
+        <p>Reels frames, post templates, and a grid that looks like a brand, not a feed.</p>
+        <div class="chips"><span class="chip">Reels</span><span class="chip">Templates</span><span class="chip">Grids</span></div>
+      </div>
+
+      <div class="tile t4 reveal" style="--d:4">
+        <span class="badge">Hot 🔥</span>
+        <div class="art" aria-hidden="true">
+          <div class="g" style="background:linear-gradient(140deg,#FF6B57,#2B1B4A 88%)"></div>
+          <svg viewBox="0 0 240 160" preserveAspectRatio="none">
+            <path fill="rgba(255,232,107,.45)" d="M168 96c34 6 56 26 50 46s-36 30-64 24-46-20-40-40 20-30 54-30z"/>
+            <path fill="rgba(255,122,198,.4)" d="M60 30c40-10 80 14 92 40s2 52-28 60-70-6-84-34 0-56 20-66z"/>
+          </svg>
+        </div>
+        <h3>Packaging</h3>
+        <p>Labels, boxes, hang tags — shelf presence that photographs itself.</p>
+        <div class="chips"><span class="chip">Labels</span><span class="chip">Boxes</span><span class="chip">Tags</span></div>
+      </div>
+
+      <div class="tile t4 quote reveal" style="--d:5">
+        <p class="q">“They turned our boring bakery into the most photographed one in the city.”</p>
+        <div class="who"><span class="avatar" aria-hidden="true"></span>
+          <span>Marisol R.<br>Golden Crust Bakery</span></div>
+      </div>
+
+      <div class="tile t6 reveal" style="--d:6">
+        <span class="badge c">Fan favourite</span>
+        <div class="art" aria-hidden="true">
+          <div class="g" style="background:linear-gradient(120deg,#FF7AC6,#31CFFF)"></div>
+          <svg viewBox="0 0 240 160" preserveAspectRatio="none">
+            <path fill="rgba(255,255,255,.35)" d="M120 8C180 12 226 44 218 84C210 124 158 150 104 146C50 142 10 112 14 74C18 36 62 4 120 8Z"/>
+            <path fill="rgba(255,232,107,.5)" d="M168 96c34 6 56 26 50 46s-36 30-64 24-46-20-40-40 20-30 54-30z"/>
+          </svg>
+        </div>
+        <h3>Motion &amp; Stickers</h3>
+        <p>GIF kits, sticker packs, emoji sets, and micro-animations for your site.</p>
+        <div class="chips"><span class="chip">GIFs</span><span class="chip">Stickers</span><span class="chip">Micro-motion</span></div>
+      </div>
+
+      <div class="tile t6 dark-tile reveal" style="--d:7">
+        <span class="badge">CSS-only art</span>
+        <h3>Work Sampler</h3>
+        <p>Every visual on this page is built from gradients and blobs — no stock photos, no uploads.</p>
+        <div class="mini-grid" aria-hidden="true">
+          <div class="mini"><span class="m" style="background:radial-gradient(120% 120% at 20% 20%,#FFE86B,#FF6B57 70%)"></span></div>
+          <div class="mini"><span class="m" style="background:radial-gradient(120% 120% at 80% 20%,#31CFFF,#7C4DFF 75%)"></span></div>
+          <div class="mini"><span class="m" style="background:radial-gradient(120% 120% at 50% 90%,#FF7AC6,#2B1B4A 80%)"></span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- 4 · STATS -->
+<section class="stats-sec">
+  <div class="wrap">
+    <div class="stats reveal" style="--d:0">
+      <div class="stat"><span class="n">240+</span><p class="l">Brands launched</p></div>
+      <div class="stat"><span class="n">1.9×</span><p class="l">Avg. engagement lift</p></div>
+      <div class="stat"><span class="n">6-day</span><p class="l">First design sprint</p></div>
+      <div class="stat"><span class="n">98%</span><p class="l">Clients rebook</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- 5 · PROCESS -->
+<section id="process" class="process">
+  <div class="wrap">
+    <div class="reveal" style="--d:0">
+      <h2 class="h2">Four steps, <span class="u">zero drama.</span></h2>
+      <p class="sub">You get moodboards on day two and files on day fourteen. No endless revisions, no surprise invoices.</p>
+    </div>
+    <div class="steps">
+      <div class="step reveal" style="--d:1">
+        <span class="num">01</span>
+        <h3>Discover</h3>
+        <p>A 45-minute call about your brand, your competitors, and who you want to obsess over you.</p>
+        <span class="eta">Day 1–2</span>
+      </div>
+      <div class="step reveal" style="--d:2">
+        <span class="num">02</span>
+        <h3>Sketch</h3>
+        <p>Two loud directions in moodboard form. You pick one, we push it to 110%.</p>
+        <span class="eta">Day 3–6</span>
+      </div>
+      <div class="step reveal" style="--d:3">
+        <span class="num">03</span>
+        <h3>Build</h3>
+        <p>Logo, palette, type, pages, templates — built and tested together, weekly demos.</p>
+        <span class="eta">Day 7–13</span>
+      </div>
+      <div class="step reveal" style="--d:4">
+        <span class="num">04</span>
+        <h3>Launch</h3>
+        <p>Files, guidelines, and a launch kit for your first week of posts. Yours forever.</p>
+        <span class="eta">Day 14</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 · CTA -->
+<section id="start" class="cta-sec">
+  <div class="wrap">
+    <div class="cta reveal" style="--d:0">
+      <div class="confetti" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      <h2>Ready to get loud?</h2>
+      <p>Tell us about your brand. You’ll get a free direction sketch within 48 hours — no forms, no funnels.</p>
+      <a class="btn dark" href="mailto:hello@popshop.example">Book a discovery call <span class="arrow">→</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="fmark">Popshop<span class="dot">●</span>Studio</div>
+        <p class="fnote">Portfolio sample built by <a href="https://mementostudioshop.etsy.com" target="_blank" rel="noopener">MEMENTO Studio</a> to showcase custom web design — a fictional brand, fully built in CSS. <a href="index.html">See more directions</a>.</p>
+      </div>
+      <div class="fcol">
+        <h4>Studio</h4>
+        <a href="#services">Services</a><a href="#process">Process</a><a href="#start">Start a project</a>
+      </div>
+      <div class="fcol">
+        <h4>Social</h4>
+        <a href="https://www.instagram.com/" target="_blank" rel="noopener">Instagram</a><a href="https://www.tiktok.com/" target="_blank" rel="noopener">TikTok</a><a href="https://www.behance.net/" target="_blank" rel="noopener">Behance</a>
+      </div>
+    </div>
+    <div class="fbot">
+      <span>© 2026 Popshop Studio — fictional showcase</span>
+      <span>Built with zero frameworks ✦</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+// kinetic trigger + scroll reveals; everything is inert (page readable) without JS or reduced motion
+const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+if (!reduce) document.documentElement.classList.add('anim');
+function fire() { document.body.classList.add('loaded'); }
+if (document.readyState === 'complete') fire(); else addEventListener('load', fire);
+setTimeout(fire, 1500); // safety net: kinetic text must not wait on a stalled load event
+function revealAll() { document.querySelectorAll('.reveal').forEach(el => el.classList.add('in')); }
+if (!reduce) {
+  try {
+    const io = new IntersectionObserver(entries => {
+      for (const e of entries) if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    }, { threshold: 0.05, rootMargin: '0px 0px -6% 0px' });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    setTimeout(revealAll, 2200); // safety net: nothing can stay hidden if IO stalls
+  } catch (err) { revealAll(); }
+} else {
+  revealAll();
+}
+
+// When embedded in the showcase (srcdoc iframe), "back" links return to it instead of navigating.
+if (window.self !== window.top) {
+  document.querySelectorAll('a[href="index.html"]').forEach(a => a.addEventListener('click', ev => {
+    ev.preventDefault(); parent.postMessage('memento-back', '*');
+  }));
+}
+</script>
+</body>
+</html>

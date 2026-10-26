@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Jonas Reier — Digital Designer</title>
+<meta name="description" content="Portfolio of Jonas Reier, a digital designer working on quiet, type-driven interfaces.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<script>document.documentElement.classList.add('js');</script>
+<style>
+  :root{
+    --paper:#FAFAF8;
+    --ink:#111111;
+    --ink-soft:#5C5B57;
+    --accent:#16605A;
+    --accent-soft:#E4EFEA;
+    --line:rgba(17,17,17,.14);
+    --line-soft:rgba(17,17,17,.08);
+    --sans:'Inter',system-ui,-apple-system,sans-serif;
+    --mono:'JetBrains Mono',ui-monospace,monospace;
+    --ease:cubic-bezier(.22,1,.36,1);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{
+    background:var(--paper);color:var(--ink);
+    font-family:var(--sans);font-weight:400;line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  h1,h2,h3{font-weight:700;letter-spacing:-.03em;line-height:1.04}
+  a{color:inherit;text-decoration:none}
+  ::selection{background:var(--accent);color:#FDFDFB}
+  :focus-visible{outline:2px solid var(--accent);outline-offset:4px}
+  section{scroll-margin-top:92px}
+  .wrap{max-width:1080px;margin:0 auto;padding:0 clamp(20px,4vw,56px)}
+  .mono{font-family:var(--mono);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+  .dim{color:var(--ink-soft)}
+  .accent{color:var(--accent)}
+  .rule{border-top:1px solid var(--line)}
+
+  /* ---------- scroll progress ---------- */
+  .progress{
+    position:fixed;top:0;left:0;z-index:90;width:100%;height:2px;
+    background:var(--accent);transform:scaleX(0);transform-origin:left;
+  }
+  @supports (animation-timeline: scroll()){
+    .progress{animation:pg linear;animation-timeline:scroll(root)}
+  }
+  @keyframes pg{to{transform:scaleX(1)}}
+
+  /* ---------- header ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:80;
+    background:rgba(250,250,248,.92);backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line-soft);
+  }
+  .bar{
+    max-width:1080px;margin:0 auto;padding:16px clamp(20px,4vw,56px);
+    display:flex;align-items:center;justify-content:space-between;gap:18px;
+  }
+  .wordmark{font-family:var(--mono);font-size:13px;font-weight:500;letter-spacing:.14em}
+  .wordmark b{color:var(--accent);font-weight:500}
+  nav{display:flex;gap:26px}
+  nav a{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--ink-soft);transition:color .3s ease}
+  nav a:hover{color:var(--accent)}
+
+  /* ---------- kinetic reveals ---------- */
+  html.js .kinetic span{display:inline-block;opacity:0;translate:0 44px;transition:opacity .9s var(--ease),translate .9s var(--ease)}
+  html.js body.loaded .kinetic span{opacity:1;translate:0 0;transition-delay:calc(var(--i,0) * 90ms)}
+  html.js .reveal{opacity:0;translate:0 28px;transition:opacity .8s var(--ease) calc(var(--d,0) * 90ms),translate .8s var(--ease) calc(var(--d,0) * 90ms)}
+  html.js .reveal.in{opacity:1;translate:0 0}
+
+  /* ---------- hero ---------- */
+  .hero{padding:150px 0 clamp(60px,9vw,110px)}
+  .hero-grid{display:grid;grid-template-columns:1fr 300px;gap:clamp(30px,5vw,70px);align-items:end}
+  .eyebrow{display:flex;gap:22px;margin-bottom:38px}
+  .eyebrow span{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--ink-soft)}
+  .eyebrow .live{color:var(--accent)}
+  h1{font-size:clamp(44px,7.6vw,94px);letter-spacing:-.045em}
+  h1 .quiet{color:var(--accent)}
+  .lede{max-width:520px;margin-top:34px;font-size:17px;color:var(--ink-soft)}
+  .lede strong{color:var(--ink);font-weight:600}
+  .hero-side{display:flex;flex-direction:column;gap:14px}
+  .tile{position:relative;aspect-ratio:4/5;overflow:hidden}
+  .tile-a{background:var(--accent);color:#F2EFE6;display:flex;flex-direction:column;justify-content:space-between;padding:20px}
+  .tile-a .big{font-size:56px;font-weight:800;letter-spacing:-.04em;line-height:1}
+  .tile-a .foot{font-family:var(--mono);font-size:10px;letter-spacing:.14em;opacity:.75}
+  .tile-a::after{content:"";position:absolute;left:20px;right:20px;top:64px;height:1px;background:rgba(242,239,230,.28)}
+  .tile-b{background:#fff;border:1px solid var(--line);display:grid;place-items:center}
+  .tile-b .ghost{
+    font-size:72px;font-weight:800;letter-spacing:-.05em;color:transparent;
+    -webkit-text-stroke:1px var(--ink);
+  }
+  .tile-b::before{content:"";position:absolute;inset:0;background:
+    linear-gradient(var(--line-soft) 1px,transparent 1px) 0 0/100% 25%,
+    linear-gradient(90deg,var(--line-soft) 1px,transparent 1px) 0 0/25% 100%;}
+
+  /* ---------- section labels ---------- */
+  .sec-head{display:flex;align-items:baseline;justify-content:space-between;gap:20px;padding-top:clamp(48px,7vw,84px)}
+  .sec-head h2{font-size:clamp(26px,3.4vw,40px)}
+  .sec-head .count{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--ink-soft)}
+  .sec-rule{margin-top:22px;border-top:1px solid var(--line)}
+
+  /* ---------- selected work ---------- */
+  .work-list{margin-top:8px}
+  .work{
+    display:grid;grid-template-columns:90px 1fr 220px 44px;gap:20px;align-items:baseline;
+    padding:30px 0;border-top:1px solid var(--line-soft);position:relative;
+    transition:translate .45s var(--ease);
+  }
+  .work:last-child{border-bottom:1px solid var(--line-soft)}
+  .work .year{font-family:var(--mono);font-size:12px;letter-spacing:.1em;color:var(--ink-soft)}
+  .work .name{font-size:clamp(22px,3vw,34px);font-weight:700;letter-spacing:-.025em;position:relative;display:inline-block}
+  .name::after{content:"";position:absolute;left:0;right:0;top:calc(100% + 5px);height:2px;background:var(--accent);scale:0 1;transform-origin:left;transition:scale .5s var(--ease)}
+  .work .tags{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .work .arrow{font-size:22px;color:var(--ink-soft);justify-self:end;transition:translate .4s var(--ease),color .3s ease}
+  .work:hover .name{color:var(--accent)}
+  .work:hover .name::after{scale:1 1}
+  .work:hover .arrow{translate:6px -6px;color:var(--accent)}
+  .work:hover{translate:0 -2px}
+
+  /* ---------- experience (sticky two-column) ---------- */
+  .exp{display:grid;grid-template-columns:300px 1fr;gap:clamp(30px,5vw,70px);padding-bottom:clamp(50px,8vw,90px)}
+  .exp-nav{position:sticky;top:120px;align-self:start}
+  .exp-item{display:flex;gap:14px;padding:12px 0;border-left:2px solid var(--line-soft);padding-left:16px;color:var(--ink-soft);transition:color .45s var(--ease),border-color .45s var(--ease)}
+  .exp-item .n{font-family:var(--mono);font-size:11px;letter-spacing:.1em}
+  .exp-item .t{font-size:14px;font-weight:600}
+  .exp-item.active{color:var(--accent);border-left-color:var(--accent)}
+  .exp-cards{display:flex;flex-direction:column;gap:22px}
+  .exp-card{
+    border:1px solid var(--line-soft);background:#fff;padding:clamp(24px,3.4vw,40px);
+    transition:translate .5s var(--ease),box-shadow .5s var(--ease),border-color .4s ease;
+  }
+  .exp-card:hover{translate:0 -6px;box-shadow:0 18px 40px -18px rgba(17,17,17,.16);border-color:var(--line)}
+  .exp-card .meta{display:flex;justify-content:space-between;gap:14px;font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--ink-soft)}
+  .exp-card h3{font-size:clamp(20px,2.4vw,28px);margin:14px 0 12px}
+  .exp-card p{color:var(--ink-soft);font-size:15px;max-width:56ch}
+  .exp-card p + p{margin-top:10px}
+  .exp-card .chips{margin-top:18px;display:flex;gap:8px;flex-wrap:wrap}
+  .chip{font-family:var(--mono);font-size:10px;letter-spacing:.1em;text-transform:uppercase;padding:6px 10px;border:1px solid var(--line);color:var(--ink-soft);transition:color .3s ease,border-color .3s ease,background .3s ease}
+  .chip:hover{color:#fff;background:var(--accent);border-color:var(--accent)}
+
+  /* ---------- skills ---------- */
+  .skills{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;border:1px solid var(--line);background:var(--line);margin:clamp(40px,6vw,64px) 0 clamp(50px,8vw,90px)}
+  .skill{background:var(--paper);padding:clamp(20px,3vw,34px);transition:translate .45s var(--ease),background .4s ease}
+  .skill:hover{translate:0 -5px;background:#fff}
+  .skill .k{font-family:var(--mono);font-size:11px;letter-spacing:.12em;color:var(--ink-soft)}
+  .skill h3{font-size:22px;margin:10px 0 6px}
+  .skill .desc{font-size:14px;color:var(--ink-soft);max-width:40ch}
+  .barline{margin-top:18px;height:1px;background:var(--line);position:relative}
+  .barline i{position:absolute;left:0;top:0;height:1px;background:var(--accent);width:var(--w,50%)}
+  .skill .pct{font-family:var(--mono);font-size:10px;letter-spacing:.1em;color:var(--accent);margin-top:8px;display:block}
+
+  /* ---------- contact footer ---------- */
+  footer{border-top:1px solid var(--line);padding:clamp(48px,7vw,90px) 0 44px}
+  .hello{font-size:clamp(36px,6vw,76px);letter-spacing:-.04em}
+  .hello .dot{color:var(--accent)}
+  .mail{display:inline-flex;align-items:center;gap:14px;margin-top:30px;font-family:var(--mono);font-size:14px;letter-spacing:.06em;color:var(--accent)}
+  .mail .ar{transition:translate .4s var(--ease)}
+  .mail:hover .ar{translate:6px -6px}
+  .foot-grid{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;margin-top:clamp(40px,6vw,70px)}
+  .foot-grid div{font-family:var(--mono);font-size:11px;letter-spacing:.1em;color:var(--ink-soft);line-height:2}
+  .foot-grid a:hover{color:var(--accent)}
+
+  /* ---------- responsive ---------- */
+  @media (max-width:860px){
+    .hero-grid{grid-template-columns:1fr 240px}
+    .work{grid-template-columns:70px 1fr 44px}
+    .work .tags{grid-column:2}
+  }
+  @media (max-width:640px){
+    nav{display:none}
+    .hero{padding-top:110px}
+    .hero-grid{grid-template-columns:1fr}
+    .hero-side{flex-direction:row}
+    .tile{aspect-ratio:1/1}
+    .tile-a .big{font-size:38px}
+    .tile-b .ghost{font-size:44px}
+    .work{grid-template-columns:1fr auto;row-gap:10px}
+    .work .year{grid-column:1/-1}
+    .work .tags{grid-column:1/-1}
+    .exp{grid-template-columns:1fr;gap:26px}
+    .exp-nav{position:static}
+    .skills{grid-template-columns:1fr}
+  }
+
+  /* ---------- reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    .progress{display:none}
+    *{animation:none !important;transition-duration:.001s !important}
+    html.js .kinetic span{opacity:1;translate:0 0}
+    html.js .reveal{opacity:1;translate:0 0}
+    .work:hover{translate:0 0}
+    .exp-card:hover,.skill:hover{translate:0 0;box-shadow:none}
+    .mail:hover .ar,.work:hover .arrow{translate:0 0}
+  }
+</style>
+</head>
+<body>
+
+<div class="progress" aria-hidden="true"></div>
+
+<header>
+  <div class="bar">
+    <span class="wordmark">JR<b>·</b>DIGITAL DESIGNER</span>
+    <nav aria-label="Site navigation">
+      <a href="#work">Work</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <!-- HERO -->
+  <section class="hero wrap" id="top">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">
+          <span class="live">● OPEN FOR COMMISSIONS</span>
+          <span>OSLO, NO — EST. 2018</span>
+        </div>
+        <h1 class="kinetic" aria-label="Design that stays quiet">
+          <span style="--i:0">Design</span>
+          <span style="--i:1">that</span>
+          <span style="--i:2">stays</span>
+          <span class="quiet" style="--i:3">quiet.</span>
+        </h1>
+        <p class="lede">
+          <strong>Jonas Reier</strong> — digital designer working in interfaces, type systems and
+          editorial layouts. Type first, chrome never. Six selected projects below,
+          then the track record.
+        </p>
+      </div>
+      <div class="hero-side" aria-hidden="true">
+        <div class="tile tile-a">
+          <span class="foot">INDEX / 01</span>
+          <span class="big">JR</span>
+          <span class="foot">OSLO · 59.91°N</span>
+        </div>
+        <div class="tile tile-b">
+          <span class="ghost">quiet</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section id="work">
+    <div class="wrap">
+      <div class="sec-head reveal" style="--d:0">
+        <h2>Selected work</h2>
+        <span class="count">06 PROJECTS — 2021–2026</span>
+      </div>
+      <div class="sec-rule reveal" style="--d:1"></div>
+      <div class="work-list">
+        <a class="work reveal" style="--d:0" href="#contact">
+          <span class="year">2026</span>
+          <span class="name">Cadence — Transit App</span>
+          <span class="tags">Product · Design System · iOS</span>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="work reveal" style="--d:1" href="#contact">
+          <span class="year">2025</span>
+          <span class="name">Hollow — Editorial Platform</span>
+          <span class="tags">Web · Typography · CMS</span>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="work reveal" style="--d:2" href="#contact">
+          <span class="year">2024</span>
+          <span class="name">Nord Atlas — Identity System</span>
+          <span class="tags">Brand · Type · Motion</span>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="work reveal" style="--d:3" href="#contact">
+          <span class="year">2023</span>
+          <span class="name">Quiet — Meditation Companion</span>
+          <span class="tags">Product · Interaction · Dark UI</span>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="work reveal" style="--d:4" href="#contact">
+          <span class="year">2022</span>
+          <span class="name">Ledger — Finance Dashboard</span>
+          <span class="tags">SaaS · Data Viz · Components</span>
+          <span class="arrow">↗</span>
+        </a>
+        <a class="work reveal" style="--d:5" href="#contact">
+          <span class="year">2021</span>
+          <span class="name">Field Notes — Personal Publishing</span>
+          <span class="tags">HTML · Type · Open Source</span>
+          <span class="arrow">↗</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience">
+    <div class="wrap">
+      <div class="sec-head reveal" style="--d:0">
+        <h2>Experience</h2>
+        <span class="count">04 STEPS — SCROLL</span>
+      </div>
+      <div class="sec-rule reveal" style="--d:1"></div>
+      <div class="exp" style="padding-top:clamp(30px,5vw,60px)">
+        <div class="exp-nav" aria-hidden="true">
+          <div class="exp-item" data-step="0"><span class="n">01</span><span class="t">Lead Designer · Studio Fjord</span></div>
+          <div class="exp-item" data-step="1"><span class="n">02</span><span class="t">Senior Interface · Meridian Labs</span></div>
+          <div class="exp-item" data-step="2"><span class="n">03</span><span class="t">Freelance Digital Designer</span></div>
+          <div class="exp-item" data-step="3"><span class="n">04</span><span class="t">Junior Designer · Bygdøy Studio</span></div>
+        </div>
+        <div class="exp-cards">
+          <article class="exp-card reveal" data-step="0" style="--d:0">
+            <div class="meta"><span>Studio Fjord — Oslo</span><span>2024–2026</span></div>
+            <h3>Lead Designer</h3>
+            <p>Own the design system behind three public products: type scale, spacing, color tokens and motion rules documented once, used everywhere. Pair with two engineers, review every PR visually.</p>
+            <p>Shipped Cadence (transit app) — 40k daily riders, no dark patterns, zero promotional modals.</p>
+            <div class="chips"><span class="chip">Design Systems</span><span class="chip">iOS</span><span class="chip">Tokens</span></div>
+          </article>
+          <article class="exp-card reveal" data-step="1" style="--d:1">
+            <div class="meta"><span>Meridian Labs — Remote</span><span>2022–2024</span></div>
+            <h3>Senior Interface Designer</h3>
+            <p>Interface ownership for a financial dashboard serving 12k businesses: dense tables, data viz, keyboard-first interactions. Cut primary action time by 34% through layout, not features.</p>
+            <div class="chips"><span class="chip">SaaS</span><span class="chip">Data Viz</span><span class="chip">a11y</span></div>
+          </article>
+          <article class="exp-card reveal" data-step="2" style="--d:2">
+            <div class="meta"><span>Independent</span><span>2020–2022</span></div>
+            <h3>Freelance Digital Designer</h3>
+            <p>Editorial web for publishers and small studios: typography-led layouts built as hand-written HTML/CSS — no page builders. Delivered Hollow and Field Notes during this period.</p>
+            <div class="chips"><span class="chip">Web</span><span class="chip">Editorial</span><span class="chip">Hand-code</span></div>
+          </article>
+          <article class="exp-card reveal" data-step="3" style="--d:3">
+            <div class="meta"><span>Bygdøy Studio — Oslo</span><span>2018–2020</span></div>
+            <h3>Junior Designer</h3>
+            <p>Brand collateral, print layouts and first product screens for a five-person studio. Where the restraint started: hairlines, whitespace, one accent color per system.</p>
+            <div class="chips"><span class="chip">Brand</span><span class="chip">Print</span><span class="chip">Layout</span></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="wrap">
+      <div class="sec-head reveal" style="--d:0">
+        <h2>What I do</h2>
+        <span class="count">06 DISCIPLINES</span>
+      </div>
+      <div class="sec-rule reveal" style="--d:1"></div>
+      <div class="skills">
+        <div class="skill reveal" style="--d:0">
+          <span class="k">SKILL / 01</span>
+          <h3>Interface Design</h3>
+          <p class="desc">Dense layouts held by a strict type scale. Hierarchy from size and weight, never decoration.</p>
+          <div class="barline"><i style="--w:92%"></i></div><span class="pct">0.92</span>
+        </div>
+        <div class="skill reveal" style="--d:1">
+          <span class="k">SKILL / 02</span>
+          <h3>Design Systems</h3>
+          <p class="desc">Tokens, components, documented rules. Systems that survive a designer leaving.</p>
+          <div class="barline"><i style="--w:88%"></i></div><span class="pct">0.88</span>
+        </div>
+        <div class="skill reveal" style="--d:2">
+          <span class="k">SKILL / 03</span>
+          <h3>Typography &amp; Layout</h3>
+          <p class="desc">Variable fonts, optical sizing, editorial grids. Type as the primary visual element.</p>
+          <div class="barline"><i style="--w:95%"></i></div><span class="pct">0.95</span>
+        </div>
+        <div class="skill reveal" style="--d:3">
+          <span class="k">SKILL / 04</span>
+          <h3>Prototyping &amp; Motion</h3>
+          <p class="desc">Kinetic type, scroll-linked reveals, easing with intent. Motion only where it carries meaning.</p>
+          <div class="barline"><i style="--w:80%"></i></div><span class="pct">0.80</span>
+        </div>
+        <div class="skill reveal" style="--d:4">
+          <span class="k">SKILL / 05</span>
+          <h3>Front-end (HTML/CSS/JS)</h3>
+          <p class="desc">Single-file builds, no frameworks. CSS scroll timelines and IntersectionObserver over libraries.</p>
+          <div class="barline"><i style="--w:74%"></i></div><span class="pct">0.74</span>
+        </div>
+        <div class="skill reveal" style="--d:5">
+          <span class="k">SKILL / 06</span>
+          <h3>Art Direction</h3>
+          <p class="desc">One accent, hairline rules, large silence. Direction for brand and editorial pages alike.</p>
+          <div class="barline"><i style="--w:85%"></i></div><span class="pct">0.85</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- CONTACT -->
+<footer id="contact">
+  <div class="wrap">
+    <h2 class="hello kinetic" aria-label="Let's build something quiet.">
+      <span style="--i:0">Let’s</span>
+      <span style="--i:1">build</span>
+      <span style="--i:2">something</span>
+      <span style="--i:3">quiet<span class="dot">.</span></span>
+    </h2>
+    <a class="mail" href="mailto:jonas@reier.no">
+      JONAS@REIER.NO <span class="ar">↗</span>
+    </a>
+    <div class="foot-grid">
+      <div>OSLO, NORWAY<br>AVAILABLE FROM Q1 2027</div>
+      <div><a href="#work">SELECTED WORK</a><br><a href="#experience">EXPERIENCE</a><br><a href="#skills">DISCIPLINES</a></div>
+      <div><a href="https://www.are.na.com/" target="_blank" rel="noopener">ARE.NA</a><br><a href="https://www.instagram.com/" target="_blank" rel="noopener">INSTAGRAM</a><br><a href="https://www.linkedin.com/" target="_blank" rel="noopener">LINKEDIN</a></div>
+    </div>
+    <div class="foot-grid" style="margin-top:30px">
+      <div>© 2026 JONAS REIER — SET IN INTER &amp; JETBRAINS MONO</div>
+      <div>SHOWCASE BUILD BY <a href="https://mementostudioshop.etsy.com" target="_blank" rel="noopener">MEMENTO</a> · <a href="index.html">SEE MORE DIRECTIONS</a></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  (function(){
+    var reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var supported = 'IntersectionObserver' in window;
+
+    document.body.classList.add('loaded');
+
+    /* scroll reveals */
+    var reveals = document.querySelectorAll('.reveal');
+    function revealAll(){ reveals.forEach(function(el){ el.classList.add('in'); }); }
+    if (supported && !reduced) {
+      try {
+        var io = new IntersectionObserver(function(es){
+          es.forEach(function(e){
+            if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
+          });
+        }, { rootMargin: '0px 0px -6% 0px', threshold: 0 });
+        reveals.forEach(function(el){ io.observe(el); });
+        setTimeout(revealAll, 2200); // safety net: nothing stays hidden if IO stalls
+      } catch (err) { revealAll(); }
+    } else {
+      revealAll();
+    }
+
+    /* experience: active step while right card crosses center band */
+    var items = document.querySelectorAll('.exp-item');
+    var cards = document.querySelectorAll('.exp-card');
+    if (supported && !reduced && window.innerWidth > 640 && cards.length) {
+      try {
+        var eo = new IntersectionObserver(function(es){
+          es.forEach(function(e){
+            if (e.isIntersecting){
+              var i = Number(e.target.dataset.step || -1);
+              items.forEach(function(el, j){ el.classList.toggle('active', j === i); });
+            }
+          });
+        }, { rootMargin: '-45% 0px -45% 0px', threshold: 0 });
+        cards.forEach(function(c){ eo.observe(c); });
+      } catch (err) { items.forEach(function(el){ el.classList.add('active'); }); }
+    } else if (reduced) {
+      items.forEach(function(el){ el.classList.add('active'); });
+    }
+
+    // When embedded in the showcase (srcdoc iframe), "back" links return to it instead of navigating.
+    if (window.self !== window.top) {
+      document.querySelectorAll('a[href="index.html"]').forEach(function(a){
+        a.addEventListener('click', function(ev){ ev.preventDefault(); parent.postMessage('memento-back', '*'); });
+      });
+    }
+  })();
+</script>
+</body>
+</html>

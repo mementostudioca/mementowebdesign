@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hearth Coffee Roasters — Small-batch roastery &amp; café, Toronto</title>
+<meta name="description" content="A sample page built by MEMENTO Studio for its custom web design service: warm, tactile site for the fictional Hearth Coffee Roasters.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..700;1,9..144,400..600&family=Caveat:wght@400..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --paper:#EFE3D4; --paper-2:#E4D4C2; --card:#F8F0E4;
+  --ink:#3A2A20; --ink-soft:#6E594B; --terra:#C1663F; --sage:#6E7A5A;
+  --line:rgba(58,42,32,.14); --shadow:0 14px 34px rgba(58,42,32,.12);
+  --display:"Fraunces",Georgia,"Times New Roman",serif;
+  --hand:"Caveat","Segoe Script",cursive;
+  --body:"Inter",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --wrap:1140px; --gap:20px; --r:18px; --head-h:64px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.65 var(--body);
+  font-optical-sizing:auto;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 26px}
+section[id]{scroll-margin-top:calc(var(--head-h) + 26px)}
+h1,h2,h3,h4{font-family:var(--display);font-weight:500;line-height:1.12;margin:0;letter-spacing:-.01em}
+p{margin:0}
+a{color:inherit;text-decoration:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--terra);outline-offset:3px;border-radius:4px}
+.eyebrow{font:500 12px/1 var(--body);letter-spacing:.22em;text-transform:uppercase;color:var(--sage)}
+.hand{font:400 22px/1.2 var(--hand);color:var(--terra)}
+.sec-head{display:flex;align-items:baseline;gap:18px;flex-wrap:wrap;margin-bottom:34px}
+.sec-head h2{font-size:clamp(28px,3.6vw,46px)}
+.sec-head .note{font:500 12px/1 var(--body);letter-spacing:.2em;text-transform:uppercase;color:var(--ink-soft);margin-left:auto}
+.rule{height:1px;background:var(--line);border:0;margin:0}
+/* grain + progress */
+.grain{position:fixed;inset:0;z-index:9;pointer-events:none;opacity:.06;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='220' height='220' filter='url(%23g)'/%3E%3C/svg%3E")}
+.prog{position:fixed;top:0;left:0;height:3px;width:100%;background:var(--terra);z-index:12;scale:0 1;transform-origin:left}
+@supports (animation-timeline:scroll()){
+  .prog{animation:pgrow linear both;animation-timeline:scroll(root)}
+  @keyframes pgrow{to{scale:1 1}}
+}
+/* header */
+header{position:sticky;top:0;z-index:10;background:rgba(239,227,212,.92);border-bottom:1px solid var(--line)}
+.bar{height:var(--head-h);display:flex;align-items:center;gap:26px}
+.mark{font:500 21px/1 var(--display);letter-spacing:.02em}
+.mark i{font-style:normal;color:var(--terra)}
+nav{display:flex;gap:22px;margin-left:auto;font:500 13px/1 var(--body);letter-spacing:.08em}
+nav a{color:var(--ink-soft);border-bottom:1px solid transparent;padding-bottom:4px;transition:color .25s,border-color .25s}
+nav a:hover{color:var(--terra);border-color:var(--terra)}
+/* hero */
+.hero{padding:64px 0 54px}
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:46px;align-items:center}
+.hero h1{font-size:clamp(34px,5.2vw,68px);margin:18px 0 22px}
+.hero h1 .accent{color:var(--terra)}
+.hero .lede{max-width:46ch;color:var(--ink-soft)}
+.cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:9px;padding:13px 22px;border-radius:999px;
+  border:1px solid var(--ink);font:600 14px/1 var(--body);letter-spacing:.02em;background:var(--ink);color:var(--paper);
+  transition:translate .3s cubic-bezier(.22,1,.36,1),box-shadow .3s,background .3s}
+.btn:hover{translate:0 -4px;box-shadow:var(--shadow);background:var(--terra);border-color:var(--terra)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+.btn.ghost:hover{background:var(--card);border-color:var(--terra)}
+.btn .arrow{transition:translate .3s cubic-bezier(.22,1,.36,1)}
+.btn:hover .arrow{translate:5px 0}
+.chips{display:flex;gap:10px;flex-wrap:wrap;margin-top:26px}
+.chip{padding:7px 12px;border:1px dashed var(--line);border-radius:999px;font:500 11px/1 var(--body);
+  letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);transition:color .25s,border-color .25s}
+.chip:hover{color:var(--terra);border-color:var(--terra)}
+/* photo tiles: gradient stand-ins, no external images */
+.ph{position:relative;overflow:hidden;border-radius:var(--r);background:#513827;box-shadow:var(--shadow)}
+.ph .media{position:absolute;inset:0;transition:scale 1.2s cubic-bezier(.22,1,.36,1)}
+.ph::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.16;
+  background:repeating-linear-gradient(112deg,rgba(255,240,220,.14) 0 2px,transparent 2px 7px)}
+.g-eth{background:radial-gradient(120% 90% at 16% 10%,#F6C79A,.55,transparent 62%),linear-gradient(158deg,#C8845A,#8A4A2C 55%,#43301F)}
+.g-col{background:radial-gradient(110% 80% at 80% 14%,#E8B487,.5,transparent 58%),linear-gradient(150deg,#A86540,#67402A 60%,#38261B)}
+.g-gua{background:radial-gradient(120% 85% at 22% 18%,#D9A97C,.45,transparent 60%),linear-gradient(140deg,#9C7A55,#65503A 58%,#312518)}
+.g-sum{background:radial-gradient(120% 80% at 70% 20%,#C9A37F,.4,transparent 55%),linear-gradient(165deg,#7B5E46,#4E3826 60%,#281C14)}
+.g-hero{background:radial-gradient(120% 80% at 26% 16%,#F7D2A8,.6,transparent 62%),linear-gradient(150deg,#B9713F,#7C4A2E 55%,#3D2B1E)}
+.hero-art{position:relative}
+.hero-art .ph{aspect-ratio:4/3}
+.hero-art svg{position:absolute;inset:0;width:100%;height:100%}
+.badge{position:absolute;top:14px;left:14px;z-index:2;padding:6px 11px;border-radius:8px;
+  background:rgba(239,227,212,.86);color:var(--ink);font:600 11px/1 var(--body);letter-spacing:.14em;
+  text-transform:uppercase;rotate:-3deg;transition:rotate .35s cubic-bezier(.22,1,.36,1),translate .35s}
+.tile:hover .badge,.hero-art:hover .badge{rotate:2deg;translate:0 -3px}
+.badge.sage{color:var(--sage)}
+/* kinetic headline */
+.kinetic span{display:inline-block}
+html.js .kinetic span{opacity:0;translate:0 26px}
+html.js .kinetic span{transition:opacity .7s ease,translate .85s cubic-bezier(.22,1,.36,1);
+  transition-delay:calc(var(--i,0) * 110ms)}
+body.loaded .kinetic span{opacity:1;translate:0 0}
+/* scroll reveal */
+html.js .reveal{opacity:0;translate:0 22px;transition:opacity .8s ease var(--d,0ms),translate .9s cubic-bezier(.22,1,.36,1) var(--d,0ms)}
+html.js .reveal.in{opacity:1;translate:0 0}
+/* marquee */
+.marquee{overflow:hidden;border-top:1px solid var(--line);border-bottom:1px solid var(--line);background:var(--paper-2)}
+.marquee .track{width:max-content;display:flex;gap:34px;padding:11px 0;
+  font:500 12px/1 var(--body);letter-spacing:.24em;text-transform:uppercase;color:var(--ink-soft);
+  animation:mq 28s linear infinite}
+.marquee .track span{color:var(--terra)}
+@keyframes mq{to{translate:-50% 0}}
+/* menu */
+.menu{padding:70px 0}
+.menu-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.menu-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px 26px 18px;
+  transition:translate .35s cubic-bezier(.22,1,.36,1),box-shadow .35s}
+.menu-card:hover{translate:0 -6px;box-shadow:var(--shadow)}
+.menu-card h3{font-size:26px;margin-bottom:6px}
+.menu-card .sub{font:400 19px/1.2 var(--hand);color:var(--sage);margin-bottom:16px}
+.rows{list-style:none;margin:0;padding:0}
+.rows li{display:grid;grid-template-columns:auto 1fr auto;gap:4px 14px;align-items:baseline;
+  padding:12px 8px;border-bottom:1px dashed var(--line);transition:background .25s}
+.rows li:hover{background:rgba(193,102,63,.09)}
+.rows .nm{font:500 15px/1.3 var(--body);transition:translate .25s cubic-bezier(.22,1,.36,1),color .25s}
+.rows li:hover .nm{translate:4px 0;color:var(--terra)}
+.rows .desc{font:400 13px/1.4 var(--body);color:var(--ink-soft)}
+.rows .price{font:600 14px/1 var(--display);font-variant-numeric:tabular-nums;transition:color .25s}
+.rows li:hover .price{color:var(--terra)}
+.menu-note{font:500 11px/1.6 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft);margin-top:14px}
+/* sticky roasting story */
+.roast{padding:76px 0}
+.story{display:grid;grid-template-columns:300px 1fr;gap:44px;align-items:start}
+.steps{list-style:none;margin:0;padding:0;position:sticky;top:calc(var(--head-h) + 34px)}
+.step{padding:14px 16px;border-left:2px solid var(--line);opacity:.42;
+  transition:opacity .5s ease,border-color .5s ease,background .5s ease}
+.step.active{opacity:1;border-color:var(--terra);background:rgba(193,102,63,.08)}
+.step .num{font:600 12px/1 var(--display);letter-spacing:.16em;color:var(--ink-soft)}
+.step.active .num{color:var(--terra)}
+.step h4{font-size:21px;margin:6px 0 4px}
+.step p{font:400 13px/1.5 var(--body);color:var(--ink-soft)}
+.story-col{display:flex;flex-direction:column;gap:26px}
+.story-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;
+  transition:translate .35s cubic-bezier(.22,1,.36,1),box-shadow .35s,border-color .35s}
+.story-card:hover{translate:0 -6px;box-shadow:var(--shadow);border-color:var(--terra)}
+.story-card h3{font-size:25px;margin-bottom:10px}
+.story-card p{color:var(--ink-soft);max-width:62ch}
+.story-card p + p{margin-top:12px}
+.story-card .quote{font:400 22px/1.3 var(--hand);color:var(--terra);margin-top:14px}
+.spec{display:flex;gap:16px;flex-wrap:wrap;margin-top:14px;font:500 11px/1 var(--body);
+  letter-spacing:.14em;text-transform:uppercase;color:var(--sage)}
+/* origins bento */
+.origins{padding:70px 0}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gap)}
+.tile{grid-column:span 4;background:var(--card);border:1px solid var(--line);border-radius:var(--r);
+  padding:14px 14px 18px;transition:translate .35s cubic-bezier(.22,1,.36,1),box-shadow .35s}
+.tile:hover{translate:0 -8px;box-shadow:var(--shadow)}
+.tile:hover .media{scale:1.05}
+.tile .ph{aspect-ratio:4/3;border-radius:12px}
+.tile h3{font-size:22px;margin:14px 0 6px}
+.tile .meta{font:500 11px/1.5 var(--body);letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+.tile .notes{display:block;margin-top:8px;font:400 19px/1.2 var(--hand);color:var(--terra)}
+.b-lg{grid-column:span 7}
+.b-lg .ph{aspect-ratio:16/10}
+.b-lg h3{font-size:30px}
+.b-side{grid-column:span 5}
+.b-side .ph{aspect-ratio:1/1}
+/* hours & location */
+.visit{padding:70px 0 80px}
+.visit-grid{display:grid;grid-template-columns:1fr 1fr;gap:var(--gap)}
+.visit-card{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:26px;
+  transition:translate .35s cubic-bezier(.22,1,.36,1),box-shadow .35s}
+.visit-card:hover{translate:0 -6px;box-shadow:var(--shadow)}
+.visit-card h3{font-size:25px;margin-bottom:14px}
+.hours{margin:0}
+.hours .row{display:flex;justify-content:space-between;gap:16px;padding:9px 0;border-bottom:1px dashed var(--line)}
+.hours .row:last-of-type{border-bottom:0}
+.hours dt{font:500 14px/1.4 var(--body)}
+.hours dd{margin:0;font:500 14px/1.4 var(--display);font-variant-numeric:tabular-nums}
+.hours .now{color:var(--terra)}
+.roast-note{margin-top:14px;padding:12px 14px;border-radius:12px;background:rgba(110,122,90,.14);
+  border-left:2px solid var(--sage);font:400 14px/1.5 var(--body);color:var(--ink)}
+.map{width:100%;height:auto;border-radius:12px;background:#E9D9C7;border:1px solid var(--line);margin-bottom:16px}
+.addr{font:500 15px/1.5 var(--body)}
+.addr small{display:block;font:400 13px/1.5 var(--body);color:var(--ink-soft)}
+.visit-card .hand{margin-top:14px}
+/* footer */
+footer{background:#2E211A;color:#EFE3D4;padding:46px 0 30px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr;gap:34px;align-items:start}
+footer .mark{color:#EFE3D4}
+footer .tag{font:400 22px/1.2 var(--hand);color:#C1663F;margin-top:10px}
+footer ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;
+  font:500 13px/1 var(--body);letter-spacing:.1em}
+footer ul a{color:rgba(239,227,212,.72);transition:color .25s}
+footer ul a:hover{color:#C1663F}
+.f-note{margin-top:30px;padding-top:16px;border-top:1px solid rgba(239,227,212,.18);
+  font:400 12px/1.6 var(--body);color:rgba(239,227,212,.6)}
+.f-note b{color:rgba(239,227,212,.85);font-weight:500}
+/* responsive */
+@media (max-width:900px){
+  .hero-grid{grid-template-columns:1fr;gap:34px}
+  .menu-grid,.visit-grid,.f-grid{grid-template-columns:1fr}
+  .story{grid-template-columns:1fr;gap:28px}
+  .steps{position:static;grid-column:1/-1}
+  .b-lg,.b-side,.tile{grid-column:span 6}
+}
+@media (max-width:640px){
+  .wrap{padding:0 18px}
+  .hero{padding:44px 0 40px}
+  nav{gap:14px;font-size:12px}
+  .sec-head .note{margin-left:0}
+  .steps{display:grid;grid-template-columns:1fr}
+  .rows{grid-template-columns:1fr auto}
+  .rows .desc{grid-column:1/-1}
+  .b-lg,.b-side,.tile{grid-column:span 12}
+  .hero h1{font-size:clamp(30px,8.6vw,44px)}
+}
+@media (prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  html.js .reveal,html.js .kinetic span{opacity:1;translate:0 0}
+  .prog{display:none}
+  .tile:hover .media,.btn:hover,.menu-card:hover,.story-card:hover,.visit-card:hover,.tile:hover{translate:0 0}
+}
+</style>
+</head>
+<body>
+<div class="grain" aria-hidden="true"></div>
+<div class="prog" aria-hidden="true"></div>
+
+<header>
+  <div class="wrap bar">
+    <div class="mark">Hearth<i>·</i>Coffee</div>
+    <nav aria-label="Site navigation">
+      <a href="#menu" data-scroll>Menu</a>
+      <a href="#roast" data-scroll>Roasting</a>
+      <a href="#origins" data-scroll>Origins</a>
+      <a href="#visit" data-scroll>Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="top">
+    <div class="wrap hero-grid">
+      <div>
+        <p class="eyebrow">Small-batch roastery &amp; café · Toronto</p>
+        <h1 class="kinetic">
+          <span style="--i:0">Coffee</span> <span style="--i:1">roasted</span> <span style="--i:2">in</span>
+          <span style="--i:3">small</span> <span style="--i:4">batches,</span>
+          <br><span style="--i:5">three</span> <span style="--i:6">blocks</span> <span style="--i:7">from</span>
+          <span style="--i:8">your</span> <span class="accent" style="--i:9">door</span>
+        </h1>
+        <p class="lede">We roast twelve kilos at a time on Tuesdays, rest every lot five days, and brew to order
+          on the counter. No subscription pressure, no mystery blends — just single origins, honest notes,
+          and a room that smells like breakfast.</p>
+        <div class="cta">
+          <a class="btn" href="#menu" data-scroll>View the menu <span class="arrow" aria-hidden="true">→</span></a>
+          <a class="btn ghost" href="#visit" data-scroll>Find the shop</a>
+        </div>
+        <div class="chips">
+          <span class="chip">12 kg batches</span>
+          <span class="chip">5-day rest</span>
+          <span class="chip">Single origin only</span>
+        </div>
+      </div>
+      <div class="hero-art reveal">
+        <div class="ph g-hero">
+          <span class="badge">Roasted Tuesdays</span>
+          <svg viewBox="0 0 400 300" role="img" aria-label="Illustration of a coffee cup with steam">
+            <defs>
+              <linearGradient id="cup" x1="0" y1="0" x2="0" y2="1">
+                <stop offset="0" stop-color="#F8F0E4"/><stop offset="1" stop-color="#E4D4C2"/>
+              </linearGradient>
+            </defs>
+            <g stroke="#EFE3D4" stroke-width="3" fill="none" opacity=".55">
+              <path d="M186 78 c-10 12 8 22 -2 34"/><path d="M212 74 c-10 12 8 22 -2 34"/><path d="M238 80 c-10 12 8 22 -2 34"/>
+            </g>
+            <ellipse cx="212" cy="238" rx="104" ry="16" fill="#2E211A" opacity=".35"/>
+            <path d="M148 126 h128 l-16 96 h-96 z" fill="url(#cup)"/>
+            <path d="M276 136 c22 4 26 26 4 36 l-8 4" fill="none" stroke="#E4D4C2" stroke-width="9"/>
+            <path d="M150 128 h124 l-4 22 h-116 z" fill="#C1663F"/>
+            <rect x="176" y="180" width="72" height="30" rx="6" fill="#C1663F" opacity=".25"/>
+            <g fill="#3A2A20" opacity=".55">
+              <ellipse cx="300" cy="250" rx="7" ry="4" transform="rotate(-24 300 250)"/>
+              <ellipse cx="318" cy="258" rx="6" ry="3.5" transform="rotate(12 318 258)"/>
+            </g>
+          </svg>
+          <div class="media"></div>
+        </div>
+        <p class="hand" style="margin-top:12px">the counter, before opening</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="track">
+      <div>Roasted in 12 kg batches <span>·</span> Rested five days <span>·</span> Brewed to order <span>·</span> Single origin only <span>·</span> Free cupping Tuesdays 9am <span>·</span></div>
+      <div>Roasted in 12 kg batches <span>·</span> Rested five days <span>·</span> Brewed to order <span>·</span> Single origin only <span>·</span> Free cupping Tuesdays 9am <span>·</span></div>
+    </div>
+  </div>
+
+  <section class="menu" id="menu">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>The counter</h2>
+        <p class="note">Prices in CAD · taxes separate</p>
+      </div>
+      <div class="menu-grid">
+        <article class="menu-card reveal">
+          <h3>Coffee</h3>
+          <p class="sub">everything brewed to order</p>
+          <ul class="rows">
+            <li><span class="nm">Espresso</span><span class="desc">Guatemala · cocoa, orange peel</span><span class="price">$3.50</span></li>
+            <li><span class="nm">Cortado</span><span class="desc">equal parts, no fuss</span><span class="price">$4.25</span></li>
+            <li><span class="nm">Batch brew</span><span class="desc">today’s roast, by the cup</span><span class="price">$2.75</span></li>
+            <li><span class="nm">Filter of the day</span><span class="desc">single origin, V630, 250 g</span><span class="price">$5.00</span></li>
+            <li><span class="nm">Chemex for two</span><span class="desc">60 g, brewed tableside</span><span class="price">$9.00</span></li>
+            <li><span class="nm">Honey oat latte</span><span class="desc">house oat milk, local honey</span><span class="price">$5.75</span></li>
+            <li><span class="nm">Mocha</span><span class="desc">70% Colombian chocolate</span><span class="price">$6.00</span></li>
+          </ul>
+          <p class="menu-note">Decaf on request · refill discounts for mug regulars</p>
+        </article>
+        <article class="menu-card reveal" style="--d:120ms">
+          <h3>Food</h3>
+          <p class="sub">baked next door each morning</p>
+          <ul class="rows">
+            <li><span class="nm">Sourdough &amp; ricotta</span><span class="desc"> toasted, lemon zest, olive oil</span><span class="price">$9.50</span></li>
+            <li><span class="nm">Buttermilk pancakes</span><span class="desc">maple butter, three stacks</span><span class="price">$12.00</span></li>
+            <li><span class="nm">Smoked trout bun</span><span class="desc">dill, pickled onion, rye</span><span class="price">$14.50</span></li>
+            <li><span class="nm">Cardamom bun</span><span class="desc">baked at 6am, gone by noon</span><span class="price">$4.50</span></li>
+            <li><span class="nm">Banana bread</span><span class="desc">brown butter, walnut</span><span class="price">$4.00</span></li>
+            <li><span class="nm">Coffee butter toffee</span><span class="desc">made with our own espresso</span><span class="price">$3.75</span></li>
+          </ul>
+          <p class="menu-note">Vegan options marked · gluten-free on request</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="roast" id="roast">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>From cherry to cup</h2>
+        <p class="note">Five steps · no shortcuts</p>
+      </div>
+      <div class="story">
+        <ol class="steps reveal">
+          <li class="step active" data-step="1"><span class="num">01</span><h4>Sourcing</h4><p>Bought direct, in small lots, from farms we visit.</p></li>
+          <li class="step" data-step="2"><span class="num">02</span><h4>Roasting</h4><p>Twelve kilos at a time, logged curve per lot.</p></li>
+          <li class="step" data-step="3"><span class="num">03</span><h4>Resting</h4><p>Five days degassing before anything is served.</p></li>
+          <li class="step" data-step="4"><span class="num">04</span><h4>Brewing</h4><p>Recipes dialled in daily on the morning cupping.</p></li>
+          <li class="step" data-step="5"><span class="num">05</span><h4>Serving</h4><p>At the counter, in front of you, in about three minutes.</p></li>
+        </ol>
+        <div class="story-col">
+          <article class="story-card" data-step="1">
+            <h3>Buying in small lots</h3>
+            <p>We buy one container-size lot per origin, never more than we can roast in a season. The farmers
+              we work with know exactly what we took, and we know exactly what came back — the trace is short
+              on purpose.</p>
+            <p>Every bag carries the farm name, the washing station, and the harvest month. If we can’t print it,
+              we don’t buy it.</p>
+            <div class="spec"><span>Direct trade</span><span>Traceable lots</span><span>Harvest-dated</span></div>
+          </article>
+          <article class="story-card" data-step="2">
+            <h3>Roasting twelve kilos</h3>
+            <p>A small drum roaster, one person on the dial, and a curve logged for every lot. Light-medium is
+              where these coffees taste most like themselves; anything darker is a compromise we don’t make.</p>
+            <p>Tuesdays at nine. The drum is visible from the counter, so you can watch the batch you’ll drink
+              later that afternoon.</p>
+            <div class="spec"><span>12 kg batches</span><span>Logged curves</span><span>Light-medium</span></div>
+          </article>
+          <article class="story-card" data-step="3">
+            <h3>Resting five days</h3>
+            <p>Fresh-roasted coffee is stubborn — the CO2 makes it foamy, sour, and uneven in the brew. We let
+              every lot rest five days in valve-sealed bags before it reaches the bar, then cup it again to
+              confirm it settled.</p>
+            <p class="quote"> patience is part of the recipe </p>
+            <div class="spec"><span>5-day rest</span><span>Re-cupped</span><span>Valve-sealed</span></div>
+          </article>
+          <article class="story-card" data-step="4">
+            <h3>Brewing to order</h3>
+            <p>Each morning we cup the day’s roast and dial the grind, dose, and pour for that specific lot.
+              The recipe on the wall changes daily, because the coffee does. Nothing is brewed ahead and kept warm.</p>
+            <p>If a cup tastes wrong, tell us at the counter — we’ll brew another one and split the difference.</p>
+            <div class="spec"><span>Daily dial-in</span><span>V630 &amp; espresso</span><span>Recipe on the wall</span></div>
+          </article>
+          <article class="story-card" data-step="5">
+            <h3>Serving it in front of you</h3>
+            <p>The whole process ends three metres from where it began: brew bar facing the roaster, mugs
+              washed between cups, and a short note on the saucer about what you’re tasting. Sit down, it takes
+              about three minutes.</p>
+            <p class="quote"> the last step is a chair </p>
+            <div class="spec"><span>Open brew bar</span><span>Tasting notes</span><span>Walk-ins</span></div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="origins" id="origins">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Current origins</h2>
+        <p class="note">Four lots on the shelf</p>
+      </div>
+      <div class="bento">
+        <article class="tile b-lg reveal">
+          <div class="ph g-eth"><span class="badge">Natural lot</span><div class="media"></div></div>
+          <h3>Ethiopia — Gedeb</h3>
+          <p class="meta">Gedeo Zone · 1,950 masl · cherry on raised beds · November harvest</p>
+          <p class="notes">blueberry · cocoa · bergamot</p>
+        </article>
+        <article class="tile b-side reveal" style="--d:100ms">
+          <div class="ph g-col"><span class="badge sage">Washed</span><div class="media"></div></div>
+          <h3>Colombia — Huila</h3>
+          <p class="meta">La Palma · 1,700 masl · double washed</p>
+          <p class="notes">red apple · panela</p>
+        </article>
+        <article class="tile reveal" style="--d:0ms">
+          <div class="ph g-gua"><span class="badge sage">Washed</span><div class="media"></div></div>
+          <h3>Guatemala — Huehuetenango</h3>
+          <p class="meta">La Corneta · 1,600 masl</p>
+          <p class="notes">orange peel · cocoa</p>
+        </article>
+        <article class="tile reveal" style="--d:90ms">
+          <div class="ph g-sum"><span class="badge">Sumatra</span><div class="media"></div></div>
+          <h3>Indonesia — Lintong</h3>
+          <p class="meta">Timanguru · wet-hulled</p>
+          <p class="notes">cedar · molasses</p>
+        </article>
+        <article class="tile reveal" style="--d:180ms">
+          <div class="ph g-eth"><span class="badge">Decaf</span><div class="media"></div></div>
+          <h3>Swiss water decaf</h3>
+          <p class="meta">Colombia base · caffeine-free</p>
+          <p class="notes">toffee · plum</p>
+        </article>
+        <article class="tile reveal" style="--d:270ms">
+          <div class="ph g-col"><span class="badge sage">ESA support</span><div class="media"></div></div>
+          <h3>Espresso blend “Grange”</h3>
+          <p class="meta">Ethiopia + Huila · 60/40</p>
+          <p class="notes">strawberry · brown sugar</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="visit" id="visit">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <h2>Hours &amp; where</h2>
+        <p class="note">Grange’s Crossing</p>
+      </div>
+      <div class="visit-grid">
+        <article class="visit-card reveal">
+          <h3>Opening hours</h3>
+          <dl class="hours">
+            <div class="row"><dt>Monday – Friday</dt><dd class="now">7:30 – 18:30</dd></div>
+            <div class="row"><dt>Saturday</dt><dd>8:30 – 19:00</dd></div>
+            <div class="row"><dt>Sunday</dt><dd>9:00 – 17:00</dd></div>
+            <div class="row"><dt>Roast day</dt><dd>Tuesdays, 9:00</dd></div>
+          </dl>
+          <p class="roast-note">Free public cupping every Tuesday at 9am — walk in, eight coffees, no ticket needed.</p>
+        </article>
+        <article class="visit-card reveal" style="--d:120ms">
+          <h3>Find us</h3>
+          <svg class="map" viewBox="0 0 420 220" role="img" aria-label="Sketch map of the café block">
+            <rect width="420" height="220" fill="#E9D9C7"/>
+            <g stroke="#C1663F" stroke-width="2" opacity=".45">
+              <path d="M0 70 H420"/><path d="M0 150 H420"/><path d="M120 0 V220"/><path d="M300 0 V220"/>
+            </g>
+            <g stroke="#6E7A5A" stroke-width="3" opacity=".5">
+              <path d="M0 108 H420"/>
+            </g>
+            <path d="M0 100 h420 l0 22 h-420 z" fill="#6E7A5A" opacity=".16"/>
+            <text x="16" y="98" font-family="Inter, sans-serif" font-size="11" fill="#6E594B">Christie St.</text>
+            <text x="16" y="146" font-family="Inter, sans-serif" font-size="11" fill="#6E594B">Davenport Rd.</text>
+            <g transform="translate(212,108)">
+              <circle r="16" fill="#C1663F"/>
+              <circle r="6" fill="#EFE3D4"/>
+              <path d="M-4 -22 h8 v10 h-8 z" fill="#3A2A20" opacity=".5"/>
+            </g>
+            <text x="232" y="60" font-family="Caveat, cursive" font-size="24" fill="#C1663F">Hearth</text>
+          </svg>
+          <p class="addr">47 Christie Street, Toronto<small>Grange’s Crossing · two blocks from Christie station · street parking on Davenport</small></p>
+          <p class="hand">coffee smells like it does at home</p>
+        </article>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <div class="mark">Hearth<i>·</i>Coffee</div>
+        <p class="tag">small batches, three blocks from your door</p>
+        <p class="f-note"><b>Hearth Coffee Roasters</b> is a fictional shop used as a portfolio sample.
+          This page was built by <a href="https://mementostudioshop.etsy.com" target="_blank" rel="noopener">MEMENTO Studio</a> to show what our custom web design service produces —
+          single-file HTML, no build tools, no external images. <a href="index.html">See more directions</a>.</p>
+      </div>
+      <ul>
+        <li><a href="#menu" data-scroll>Menu</a></li>
+        <li><a href="#roast" data-scroll>Roasting</a></li>
+        <li><a href="#origins" data-scroll>Origins</a></li>
+        <li><a href="#visit" data-scroll>Visit</a></li>
+      </ul>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var html=document.documentElement;
+  html.classList.add('js');
+  var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function loaded(){document.body.classList.add('loaded')}
+  if(document.fonts && document.fonts.ready){document.fonts.ready.then(function(){requestAnimationFrame(loaded)});}
+  else{requestAnimationFrame(loaded);}
+  setTimeout(loaded,1400);
+
+  var reveals=document.querySelectorAll('.reveal');
+  function revealAll(){reveals.forEach(function(el){el.classList.add('in')});}
+  if(reduced){revealAll();}
+  else{
+    try{
+      var io=new IntersectionObserver(function(es){
+        es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});
+      },{threshold:0.05,rootMargin:'0px 0px -8% 0px'});
+      reveals.forEach(function(el){io.observe(el)});
+      setTimeout(revealAll,2200); // safety net: nothing stays hidden if IO stalls
+    }catch(err){revealAll();}
+  }
+
+  var steps=document.querySelectorAll('.step');
+  var cards=document.querySelectorAll('[data-step]');
+  if(steps.length){
+    try{
+      var io2=new IntersectionObserver(function(es){
+        es.forEach(function(e){
+          if(!e.isIntersecting)return;
+          var k=e.target.getAttribute('data-step');
+          steps.forEach(function(s){s.classList.toggle('active',s.getAttribute('data-step')===k);});
+        });
+      },{rootMargin:'-45% 0px -45% 0px',threshold:0});
+      cards.forEach(function(c){if(c.classList.contains('story-card'))io2.observe(c)});
+    }catch(err){}
+  }
+
+  document.querySelectorAll('a[data-scroll]').forEach(function(a){
+    a.addEventListener('click',function(ev){
+      var el=document.querySelector(a.getAttribute('href'));
+      if(!el)return;
+      ev.preventDefault();
+      el.scrollIntoView({behavior:reduced?'auto':'smooth',block:'start'});
+    });
+  });
+
+  if(!window.CSS || !CSS.supports('animation-timeline','scroll()')){
+    var p=document.querySelector('.prog');
+    if(p && !reduced){
+      window.addEventListener('scroll',function(){
+        var h=document.documentElement.scrollHeight-window.innerHeight;
+        p.style.scale=(h>0?Math.min(window.scrollY/h,1):0)+' 1';
+      },{passive:true});
+    }
+  }
+
+  // When embedded in the showcase (srcdoc iframe), "back" links return to it instead of navigating.
+  if(!window.self || window.self===window.top){return;}
+  document.querySelectorAll('a[href="index.html"]').forEach(function(a){
+    a.addEventListener('click',function(ev){ev.preventDefault();parent.postMessage('memento-back','*');});
+  });
+})();
+</script>
+</body>
+</html>
